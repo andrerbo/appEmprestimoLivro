@@ -1,5 +1,7 @@
 package br.edu.infnet.model.domain;
 
+import java.time.Duration;
+
 public class LivroFisico extends Livro{
 
     private int numPaginas;
@@ -32,6 +34,11 @@ public class LivroFisico extends Livro{
     public void impressao() {
         System.out.println("# Livro Fisico");
         System.out.println(this); 
+    }
+
+    @Override
+    public Duration calcularDuracaoEmprestimo() {
+        return Duration.ofDays(30);
     }
     
 }

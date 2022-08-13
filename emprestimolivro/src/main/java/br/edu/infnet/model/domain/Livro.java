@@ -1,9 +1,10 @@
 package br.edu.infnet.model.domain;
 
+import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
 import java.time.Duration;
 
 
-public abstract class Livro {
+public abstract class Livro implements IPrinter{
 
     private String autor;
     private String titulo;
@@ -33,16 +34,7 @@ public abstract class Livro {
         this.categoria = categoria;
     }
 
-    
-    public Duration calcularDuracaoEmprestimo(){
-
-        return Duration.ofDays(30);
-
-    }
-    
-
-    public abstract void impressao();
-    
+    public abstract Duration calcularDuracaoEmprestimo();
 
     @Override
     public String toString() {

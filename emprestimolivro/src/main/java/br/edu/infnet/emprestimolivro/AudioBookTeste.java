@@ -6,7 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.AudioBook;
-import br.edu.infnet.model.tests.AppLivro;
+import br.edu.infnet.model.tests.AppImpressao;
 
 import java.time.Duration;
 
@@ -28,7 +28,7 @@ public class AudioBookTeste implements ApplicationRunner{
         a1.setCodec(".mp3");
         a1.setDuracao(Duration.ofHours(6));
         // System.out.println(a1);
-        new AppLivro("Inclusão do livro 'Sherlock Holmes: O cão dos Baskerville'").relatorio(a1);
+        AppImpressao.relatorio("Inclusão do livro 'Sherlock Holmes: O cão dos Baskerville'", a1);
         
         
         // System.out.println();
@@ -40,7 +40,7 @@ public class AudioBookTeste implements ApplicationRunner{
         a2.setCodec(".ogg");
         a2.setDuracao(Duration.ofHours(3));
         // System.out.println(a2);
-        new AppLivro("Inclusão do livro 'Clean Code'").relatorio(a2);
+        AppImpressao.relatorio("Inclusão do livro 'Clean Code'", a2);
 
 
         // System.out.println();
@@ -52,8 +52,7 @@ public class AudioBookTeste implements ApplicationRunner{
         a3.setCodec(".wav");
         a3.setDuracao(Duration.ofHours(8));
         // System.out.println(a3);        
-        new AppLivro("Inclusão do livro 'Resiliência'").relatorio(a3);              
-        
+        AppImpressao.relatorio("Inclusão do livro 'Resiliência'", a3);          
     }
     
 }

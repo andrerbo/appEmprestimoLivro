@@ -6,7 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.LivroDigital;
-import br.edu.infnet.model.tests.AppLivro;
+import br.edu.infnet.model.tests.AppImpressao;
 
 
 @Component
@@ -26,7 +26,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
         d1.setFormato(".pdf");
         d1.setOffline(true);
         // System.out.println(d1);
-        new AppLivro("Inclusão do livro 'Clean Architecture'").relatorio(d1);
+        AppImpressao.relatorio("Inclusão do livro 'Clean Architecture'", d1);
         
         
         // System.out.println();
@@ -38,7 +38,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
         d2.setFormato(".epub");
         d2.setOffline(true);
         // System.out.println(d2);
-        new AppLivro("Inclusão do livro 'O Escaravelho do Diabo'").relatorio(d2);
+        AppImpressao.relatorio("Inclusão do livro 'O Escaravelho do Diabo'", d2);
 
 
         // System.out.println();
@@ -50,7 +50,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
         d3.setFormato(".pdf");
         d3.setOffline(false);
         // System.out.println(d3); 
-        new AppLivro("Inclusão do livro 'Avalie o Que Importa'").relatorio(d3);     
+        AppImpressao.relatorio("Inclusão do livro 'Avalie o Que Importa'", d3);     
         System.out.println(); 
         
     }

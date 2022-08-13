@@ -1,6 +1,8 @@
 package br.edu.infnet.model.domain;
 
-public class Solicitante {
+import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
+
+public class Solicitante implements IPrinter{
 
     public String nome;
     public String cpf;
@@ -15,6 +17,12 @@ public class Solicitante {
     @Override
     public String toString() {
         return this.nome + "; " + this.cpf + "; " + this.email;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("# Solicitante");
+        System.out.println(this);        
     }
     
 }

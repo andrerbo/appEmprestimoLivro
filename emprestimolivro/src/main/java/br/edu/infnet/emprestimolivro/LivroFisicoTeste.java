@@ -6,7 +6,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.model.domain.LivroFisico;
-import br.edu.infnet.model.tests.AppLivro;
+import br.edu.infnet.model.tests.AppImpressao;
 
 
 @Component
@@ -26,7 +26,7 @@ public class LivroFisicoTeste implements ApplicationRunner{
         f1.setConservacao("Excelente");
         f1.setNumPaginas(354);
         // System.out.println(f1);
-        new AppLivro("Inclusão do livro 'Think Java'").relatorio(f1);
+        AppImpressao.relatorio("Inclusão do livro 'Think Java'", f1);
         
         
         // System.out.println();
@@ -38,7 +38,7 @@ public class LivroFisicoTeste implements ApplicationRunner{
         f2.setConservacao("Novo");
         f2.setNumPaginas(207);
         // System.out.println(f2);
-        new AppLivro("Inclusão do livro 'Hardware: O Guia Definitivo'").relatorio(f2);
+        AppImpressao.relatorio("Inclusão do livro 'Hardware: O Guia Definitivo'", f2);
 
 
         // System.out.println();
@@ -50,10 +50,7 @@ public class LivroFisicoTeste implements ApplicationRunner{
         f3.setConservacao("Bom estado");
         f3.setNumPaginas(654);
         // System.out.println(f3);
-        new AppLivro("Inclusão do livro 'Fahrenheit 451'").relatorio(f3);        
-        System.out.println();    
-        
-    }
-
-    
+        AppImpressao.relatorio("Inclusão do livro 'Fahrenheit 451'", f3);        
+        System.out.println();        
+    }    
 }

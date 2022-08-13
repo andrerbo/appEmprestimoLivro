@@ -2,7 +2,10 @@ package br.edu.infnet.model.domain;
 
 import java.time.LocalDate;
 
-public class Emprestimo {
+import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
+
+
+public class Emprestimo implements IPrinter{
 
     private LocalDate dataInicio;
     private LocalDate dataDevolucao;
@@ -35,6 +38,12 @@ public class Emprestimo {
     @Override
     public String toString() {
         return this.dataInicio + "; " + this.dataDevolucao + "; " + this.atraso;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("# Empréstimo");
+        System.out.println(this);        
     }
     
 }

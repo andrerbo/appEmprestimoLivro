@@ -26,7 +26,7 @@ public class LivroDigital extends Livro{
     @Override
     public Duration calcularDuracaoEmprestimo() {
 
-        // comportamento completamente diferente da classe mãe
+        // comportamento diferente da classe mãe
         return this.offline ? Duration.ofDays(2) : Duration.ofDays(60);
 
     }
