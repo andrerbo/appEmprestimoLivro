@@ -1,5 +1,7 @@
 package br.edu.infnet.model.domain;
 
+import java.time.Duration;
+
 public class LivroDigital extends Livro{
     
     private String formato;
@@ -22,8 +24,22 @@ public class LivroDigital extends Livro{
     }
 
     @Override
+    public Duration calcularDuracaoEmprestimo() {
+
+        // comportamento completamente diferente da classe mãe
+        return this.offline ? Duration.ofDays(2) : Duration.ofDays(60);
+
+    }
+
+    @Override
     public String toString() {
         return super.toString() + "; " + this.formato + "; " + this.offline;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("# Livro Digital");
+        System.out.println(this);
     }
     
 }

@@ -1,6 +1,9 @@
 package br.edu.infnet.model.domain;
 
-public class Livro {
+import java.time.Duration;
+
+
+public abstract class Livro {
 
     private String autor;
     private String titulo;
@@ -30,9 +33,20 @@ public class Livro {
         this.categoria = categoria;
     }
 
+    
+    public Duration calcularDuracaoEmprestimo(){
+
+        return Duration.ofDays(30);
+
+    }
+    
+
+    public abstract void impressao();
+    
+
     @Override
     public String toString() {
-        return this.autor + "; " + this.titulo + "; " + this.categoria;
+        return calcularDuracaoEmprestimo().toDays() + " dia(s); " +  this.autor + "; " + this.titulo + "; " + this.categoria;
     }
     
 }

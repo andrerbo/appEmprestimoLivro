@@ -21,9 +21,17 @@ public class LivroFisico extends Livro{
         this.conservacao = conservacao;
     }
 
+    // calcularDuracaoEmprestimo não implementado: mesmo comportamento da classe mãe
+
     @Override
     public String toString() {
         return super.toString() + "; " + this.numPaginas + "; " + this.conservacao;
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("# Livro Fisico");
+        System.out.println(this); 
     }
     
 }

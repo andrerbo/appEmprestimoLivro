@@ -24,8 +24,21 @@ public class AudioBook extends Livro{
     }
 
     @Override
+    public Duration calcularDuracaoEmprestimo() {
+
+        // comportamente da classe mãe + complemento
+        return super.calcularDuracaoEmprestimo().minusDays(29); // retorna tempo fixo -> 1 dia
+    }
+
+    @Override
     public String toString() {
-        return super.toString() + "; " + this.codec + "; " + this.duracao;
+        return super.toString() + "; " + this.codec + "; " + this.duracao.toHours() + "hrs";
+    }
+
+    @Override
+    public void impressao() {
+        System.out.println("# Audio Book");
+        System.out.println(this);
     }
     
 }
