@@ -22,6 +22,7 @@ public class AudioBookTeste implements ApplicationRunner{
         // System.out.println("Classe: AudioBook");
         // System.out.println("AudioBook 1:");
         AudioBook a1 = new AudioBook();
+        a1.setCodigo(1);
         a1.setAutor("Arthur Conan Doyle");
         a1.setTitulo("Sherlock Holmes: O cão dos Baskerville");
         a1.setCategoria("Romance Policial");
@@ -34,6 +35,7 @@ public class AudioBookTeste implements ApplicationRunner{
         // System.out.println();
         // System.out.println("AudioBook 2");
         AudioBook a2 = new AudioBook();
+        a2.setCodigo(2);
         a2.setAutor("Robert C. Martin");
         a2.setTitulo("Clean Code");
         a2.setCategoria("Tecnologia");
@@ -46,6 +48,7 @@ public class AudioBookTeste implements ApplicationRunner{
         // System.out.println();
         // System.out.println("AudioBook 3");
         AudioBook a3 = new AudioBook();
+        a3.setCodigo(3);
         a3.setAutor("Paulo Yazig Sabbag");
         a3.setTitulo("Resiliência");
         a3.setCategoria("Auto-ajuda");

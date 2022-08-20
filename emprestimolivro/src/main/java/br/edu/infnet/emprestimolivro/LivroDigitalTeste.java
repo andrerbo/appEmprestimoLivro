@@ -20,6 +20,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
         // System.out.println("Classe: LivroDigital");
         // System.out.println("LivroDigital 1:");
         LivroDigital d1 = new LivroDigital();
+        d1.setCodigo(4);
         d1.setAutor("Robert C. Martin");
         d1.setTitulo("Clean Architecture");
         d1.setCategoria("Tecnologia");
@@ -32,6 +33,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
         // System.out.println();
         // System.out.println("LivroDigital 2");
         LivroDigital d2 = new LivroDigital();
+        d2.setCodigo(5);
         d2.setAutor("Lucia M. Almeida");
         d2.setTitulo("O Escaravelho do Diabo");
         d2.setCategoria("Romance Policial");
@@ -44,6 +46,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
         // System.out.println();
         // System.out.println("LivroDigital 3");
         LivroDigital d3 = new LivroDigital();
+        d3.setCodigo(6);
         d3.setAutor("Jonh Doerr");
         d3.setTitulo("Avalie o Que Importa");
         d3.setCategoria("Auto-ajuda");

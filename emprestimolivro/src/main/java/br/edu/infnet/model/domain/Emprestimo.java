@@ -1,7 +1,10 @@
 package br.edu.infnet.model.domain;
-
+// java libraries
 import java.time.LocalDate;
+// import java.util.List;
+import java.util.Set;
 
+// interfaces
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
 
 
@@ -10,14 +13,22 @@ public class Emprestimo implements IPrinter{
     private LocalDate dataInicio;
     private LocalDate dataDevolucao;
     private boolean atraso;
+    private Solicitante solicitante;
+    private Set<Livro> livros;
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
+
+    public Emprestimo(Solicitante solicitante) {
+        this.dataInicio = LocalDate.now();
+        this.solicitante = solicitante;
     }
 
-    public void setDataInicio(LocalDate dataInicio) {
-        this.dataInicio = dataInicio;
-    }
+    // public LocalDate getDataInicio() {
+    //     return dataInicio;
+    // }
+
+    // public void setDataInicio(LocalDate dataInicio) {
+    //     this.dataInicio = dataInicio;
+    // }
 
     public LocalDate getDataDevolucao() {
         return dataDevolucao;
@@ -35,9 +46,17 @@ public class Emprestimo implements IPrinter{
         this.atraso = atraso;
     }
 
+    public Set<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(Set<Livro> livros) {
+        this.livros = livros;
+    }
+    
     @Override
     public String toString() {
-        return this.dataInicio + "; " + this.dataDevolucao + "; " + this.atraso;
+        return this.dataInicio + "; " + this.dataDevolucao + "; " + this.atraso + "; " + this.solicitante + "; " + this.livros.size();
     }
 
     @Override
