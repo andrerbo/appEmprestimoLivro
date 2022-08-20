@@ -5,13 +5,13 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.emprestimolivro.controller.EmprestimoController;
 import br.edu.infnet.model.domain.AudioBook;
 import br.edu.infnet.model.domain.Emprestimo;
 import br.edu.infnet.model.domain.Solicitante;
 import br.edu.infnet.model.domain.Livro;
 import br.edu.infnet.model.domain.LivroDigital;
 import br.edu.infnet.model.domain.LivroFisico;
-import br.edu.infnet.model.tests.AppImpressao;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -26,7 +26,6 @@ public class EmprestimoTeste implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        System.out.println();
         LivroFisico f1 = new LivroFisico();
         f1.setCodigo(11);
         f1.setAutor("Allen B. Downey");
@@ -62,8 +61,9 @@ public class EmprestimoTeste implements ApplicationRunner{
         e1.setDataDevolucao(LocalDate.now().plusDays(14));
         e1.setAtraso(false);
         e1.setLivros(listaLivroE1);
-        AppImpressao.relatorio("Inclusão do Empréstimo 1", e1);
-        
+        EmprestimoController.incluirEmprestimo(e1);       
+
+
 
         LivroFisico f2 = new LivroFisico();
         f2.setCodigo(15);
@@ -100,7 +100,8 @@ public class EmprestimoTeste implements ApplicationRunner{
         e2.setDataDevolucao(LocalDate.now().minusDays(6));
         e2.setAtraso(true);
         e2.setLivros(listaLivroE2);
-        AppImpressao.relatorio("Inclusão do Empréstimo 2", e2);
+        EmprestimoController.incluirEmprestimo(e2);
+
 
 
         LivroFisico f3 = new LivroFisico();
@@ -138,9 +139,7 @@ public class EmprestimoTeste implements ApplicationRunner{
         e3.setDataDevolucao(LocalDate.now().plusDays(7));
         e3.setAtraso(false);
         e3.setLivros(listaLivroE3);
-        AppImpressao.relatorio("Inclusão do Empréstimo 3", e3);
-
-        System.out.println();
+        EmprestimoController.incluirEmprestimo(e3);
     }
 
 }

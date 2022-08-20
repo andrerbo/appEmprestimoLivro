@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -18,10 +19,10 @@
           <a class="nav-link" href="/classes/solicitante">Solicitante</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classes/emprestimo">Emprestimo</a>
+          <a class="nav-link active" href="/classes/emprestimo">Emprestimo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/classes/livrofisico">Livro Fisico</a>
+          <a class="nav-link" href="/classes/livrofisico">Livro Fisico</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/classes/livrodigital">Livro Digital</a>
@@ -37,39 +38,31 @@
       <h2>App Empréstimo Livro</h2>
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
-      <h3>Classe: LivroFisico</h3>
+      <h3>Classe: Empréstimo</h3>
       <table class="table table-bordered" style="table-layout: fixed; width: 100%">
         <thead>
           <tr>
-            <th>Autor</th>
-            <th>Título</th>
-            <th>Categoria</th>
-            <th>Número de páginas</th>
-            <th>Conservação</th>
+            <th>Data Início</th>
+            <th>Data Término</th>
+            <th>Atraso</th>
+            <th>Solicitante</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Livros</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Allen B. Downey</td>
-            <td>Think Java</td>
-            <td>Tecnologia</td>
-            <td>354</td>
-            <td>Excelente</td>
-          </tr>
-          <tr>
-            <td>Carlos E. Morimoto</td>
-            <td>Hardware: O Guia Definitivo</td>
-            <td>Tecnologia</td>
-            <td>207</td>
-            <td>Novo</td>
-          </tr>
-          <tr>
-            <td>Ray Bradbury</td>
-            <td>Fahrenheit 451</td>
-            <td>Ficção</td>
-            <td>657</td>
-            <td>Bom estado</td>
-          </tr>
+          <c:forEach var="e" items="${listagemEmprestimo}">
+            <tr>
+              <td>${e.dataInicio}</td>
+              <td>${e.dataDevolucao}</td>
+              <td>${e.atraso}</td>
+              <td>${e.solicitante.nome}</td>
+              <td>${e.solicitante.cpf}</td>
+              <td>${e.solicitante.email}</td>
+              <td>${e.livros.size()}</td>
+            </tr>
+          </c:forEach>
         </tbody>
       </table>
 

@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -18,10 +19,10 @@
           <a class="nav-link" href="/classes/solicitante">Solicitante</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="/classes/emprestimo">Emprestimo</a>
+          <a class="nav-link" href="/classes/emprestimo">Emprestimo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classes/livrofisico">Livro Fisico</a>
+          <a class="nav-link active" href="/classes/livrofisico">Livro Fisico</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/classes/livrodigital">Livro Digital</a>
@@ -37,31 +38,29 @@
       <h2>App Empréstimo Livro</h2>
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
-      <h3>Classe: Emprestimo</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <h3>Classe: LivroFisico</h3>
+      <table class="table table-bordered"> <!-- style="table-layout: fixed; width: 100%" -->
         <thead>
           <tr>
-            <th>Data Início</th>
-            <th>Data Término</th>
-            <th>Atraso</th>
+            <th>Código</th>
+            <th>Autor</th>
+            <th>Título</th>
+            <th>Categoria</th>
+            <th>Páginas</th>
+            <th>Conservação</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>2022-08-13</td>
-            <td>2022-08-27</td>
-            <td>Não</td>
-          </tr>
-          <tr>
-            <td>2022-07-24</td>
-            <td>2022-08-07</td>
-            <td>Sim</td>
-          </tr>
-          <tr>
-            <td>2022-08-06</td>
-            <td>2022-08-20</td>
-            <td>Não</td>
-          </tr>
+          <c:forEach var="l" items="${listagemLivrosFisicos}">
+            <tr>
+              <td>${l.codigo}</td>
+              <td>${l.autor}</td>
+              <td>${l.titulo}</td>
+              <td>${l.categoria}</td>
+              <td>${l.numPaginas}</td>
+              <td>${l.conservacao}</td>
+            </tr>
+          </c:forEach>
         </tbody>
       </table>
 

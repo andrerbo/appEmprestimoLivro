@@ -5,6 +5,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.emprestimolivro.controller.LivroFisicoController;
 import br.edu.infnet.model.domain.LivroFisico;
 import br.edu.infnet.model.tests.AppImpressao;
 
@@ -16,7 +17,6 @@ public class LivroFisicoTeste implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) throws Exception {
 
-        System.out.println();
         // System.out.println("Classe: LivroFisico");
         // System.out.println("LivroFisico 1:");
         LivroFisico f1 = new LivroFisico();
@@ -26,10 +26,10 @@ public class LivroFisicoTeste implements ApplicationRunner{
         f1.setCategoria("Tecnologia");
         f1.setConservacao("Excelente");
         f1.setNumPaginas(354);
-        // System.out.println(f1);
-        AppImpressao.relatorio("Inclusão do livro 'Think Java'", f1);
+        LivroFisicoController.incluirLivroFisico(f1);
+        // AppImpressao.relatorio("Inclusão do livro 'Think Java'", f1);
         
-        
+
         // System.out.println();
         // System.out.println("LivroFisico 2");
         LivroFisico f2 = new LivroFisico();
@@ -39,8 +39,8 @@ public class LivroFisicoTeste implements ApplicationRunner{
         f2.setCategoria("Tecnologia");
         f2.setConservacao("Novo");
         f2.setNumPaginas(207);
-        // System.out.println(f2);
-        AppImpressao.relatorio("Inclusão do livro 'Hardware: O Guia Definitivo'", f2);
+        LivroFisicoController.incluirLivroFisico(f2);
+        // AppImpressao.relatorio("Inclusão do livro 'Hardware: O Guia Definitivo'", f2);
 
 
         // System.out.println();
@@ -52,8 +52,7 @@ public class LivroFisicoTeste implements ApplicationRunner{
         f3.setCategoria("Ficção");
         f3.setConservacao("Bom estado");
         f3.setNumPaginas(654);
-        // System.out.println(f3);
-        AppImpressao.relatorio("Inclusão do livro 'Fahrenheit 451'", f3);        
-        System.out.println();        
+        LivroFisicoController.incluirLivroFisico(f3);
+        // AppImpressao.relatorio("Inclusão do livro 'Fahrenheit 451'", f3);               
     }    
 }
