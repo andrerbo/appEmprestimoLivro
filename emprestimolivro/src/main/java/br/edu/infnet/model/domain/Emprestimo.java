@@ -9,6 +9,7 @@ import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
 
 public class Emprestimo implements IPrinter{
 
+    private Integer id;
     private LocalDate dataInicio;
     private LocalDate dataDevolucao;
     private boolean atraso;
@@ -19,6 +20,14 @@ public class Emprestimo implements IPrinter{
     public Emprestimo(Solicitante solicitante) {
         this.dataInicio = LocalDate.now();
         this.solicitante = solicitante;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public LocalDate getDataInicio() {

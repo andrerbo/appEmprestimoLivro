@@ -4,7 +4,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>App Empréstimo Livro</title>
 </head>
 <body>  
@@ -15,19 +14,19 @@
           <a class="nav-link active" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classes/solicitante">Solicitante</a>
+          <a class="nav-link" href="/solicitante/lista">Solicitante</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classes/emprestimo">Emprestimo</a>
+          <a class="nav-link" href="/emprestimo/lista">Emprestimo</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classes/livrofisico">Livro Fisico</a>
+          <a class="nav-link" href="/livrofisico/lista">Livro Fisico</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classes/livrodigital">Livro Digital</a>
+          <a class="nav-link" href="/livrodigital/lista">Livro Digital</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/classes/livroaudio">Livro Audio</a>
+          <a class="nav-link" href="/livroaudio/lista">Livro Audio</a>
         </li>
       </ul>
     </div>
@@ -38,7 +37,7 @@
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
       <h3>Classe: Emprestimo</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table" style="table-layout: fixed; width: 100%">
         <thead>
           <tr>
             <th>Atributo</th>
@@ -68,7 +67,7 @@
       <br>
 
       <h3>Classe: Solicitante</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table" style="table-layout: fixed; width: 100%">
         <thead>
           <tr>
             <th>Atributo</th>
@@ -98,7 +97,7 @@
       <br>
 
       <h3>Classe: Livro</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table" style="table-layout: fixed; width: 100%">
         <thead>
           <tr>
             <th>Atributo</th>
@@ -128,7 +127,7 @@
       <br>
 
       <h3>Classe: LivroFisico</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table" style="table-layout: fixed; width: 100%">
         <thead>
           <tr>
             <th>Atributo</th>
@@ -153,7 +152,7 @@
       <br>
 
       <h3>Classe: LivroDigital</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table" style="table-layout: fixed; width: 100%">
         <thead>
           <tr>
             <th>Atributo</th>
@@ -178,7 +177,7 @@
       <br>
 
       <h3>Classe: AudioBook</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table" style="table-layout: fixed; width: 100%">
         <thead>
           <tr>
             <th>Atributo</th>

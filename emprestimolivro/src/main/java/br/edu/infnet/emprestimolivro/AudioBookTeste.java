@@ -26,7 +26,7 @@ public class AudioBookTeste implements ApplicationRunner{
         a1.setCategoria("Romance Policial");
         a1.setCodec(".mp3");
         a1.setDuracao(Duration.ofHours(6));
-        LivroAudioController.inclruiAudiobook(a1);        
+        LivroAudioController.incluirAudiobook(a1);        
         
         AudioBook a2 = new AudioBook();
         a2.setCodigo(2);
@@ -35,7 +35,7 @@ public class AudioBookTeste implements ApplicationRunner{
         a2.setCategoria("Tecnologia");
         a2.setCodec(".ogg");
         a2.setDuracao(Duration.ofHours(3));
-        LivroAudioController.inclruiAudiobook(a2);
+        LivroAudioController.incluirAudiobook(a2);
 
         AudioBook a3 = new AudioBook();
         a3.setCodigo(3);
@@ -44,7 +44,7 @@ public class AudioBookTeste implements ApplicationRunner{
         a3.setCategoria("Auto-ajuda");
         a3.setCodec(".wav");
         a3.setDuracao(Duration.ofHours(8));
-        LivroAudioController.inclruiAudiobook(a3);
+        LivroAudioController.incluirAudiobook(a3);
     }
     
 }

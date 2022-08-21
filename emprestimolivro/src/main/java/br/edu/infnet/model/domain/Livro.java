@@ -6,11 +6,20 @@ import java.time.Duration;
 
 public abstract class Livro implements IPrinter{
 
+    private Integer id;
     private int codigo;
     private String autor;
     private String titulo;
     private String categoria;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public int getCodigo() {
         return codigo;
@@ -48,7 +57,7 @@ public abstract class Livro implements IPrinter{
 
     @Override
     public String toString() {
-        return this.codigo + "; " + calcularDuracaoEmprestimo().toDays() + " dia(s); " +  this.autor + "; " + this.titulo + "; " + this.categoria;
+        return calcularDuracaoEmprestimo().toDays() + " dia(s); " +  this.autor + "; " + this.titulo + "; " + this.categoria;
     }
 
     @Override
@@ -71,8 +80,6 @@ public abstract class Livro implements IPrinter{
         if (codigo != other.codigo)
             return false;
         return true;
-    }
-
-    
+    }    
     
 }
