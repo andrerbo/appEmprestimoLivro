@@ -57,6 +57,8 @@ public class EmprestimoTeste implements ApplicationRunner{
 
         Solicitante s1 = new Solicitante("Andre R.", "999.999.990-00", "andre@mail.com");
         Emprestimo e1 = new Emprestimo(s1);
+        // Emprestimo e1 = new Emprestimo();
+        // e1.setSolicitante(s1);
         // e1.setDataInicio(LocalDate.now());
         e1.setDataDevolucao(LocalDate.now().plusDays(14));
         e1.setAtraso(false);
@@ -96,6 +98,8 @@ public class EmprestimoTeste implements ApplicationRunner{
 
         Solicitante s2 = new Solicitante("Roberto S.", "999.888.777-00", "roberto@mail.com");
         Emprestimo e2 = new Emprestimo(s2);
+        // Emprestimo e2 = new Emprestimo();
+        // e2.setSolicitante(s2);
         // e2.setDataInicio(LocalDate.now().minusDays(20));
         e2.setDataDevolucao(LocalDate.now().minusDays(6));
         e2.setAtraso(true);
@@ -135,6 +139,8 @@ public class EmprestimoTeste implements ApplicationRunner{
 
         Solicitante s3 = new Solicitante("Luisa A.", "000.000.123-00", "luisa@mail.com");
         Emprestimo e3 = new Emprestimo(s3);
+        // Emprestimo e3 = new Emprestimo();
+        // e3.setSolicitante(s3);
         // e3.setDataInicio(LocalDate.now().minusDays(7));
         e3.setDataDevolucao(LocalDate.now().plusDays(7));
         e3.setAtraso(false);

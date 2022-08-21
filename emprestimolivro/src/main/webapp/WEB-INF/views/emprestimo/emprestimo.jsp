@@ -39,7 +39,7 @@
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
       <h3>Classe: Empréstimo</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table table-bordered"> <!--style="table-layout: fixed; width: 100%"-->
         <thead>
           <tr>
             <th>Data Início</th>
@@ -54,13 +54,13 @@
         <tbody>
           <c:forEach var="e" items="${listagemEmprestimo}">
             <tr>
-              <td>${e.dataInicio}</td>
-              <td>${e.dataDevolucao}</td>
-              <td>${e.atraso}</td>
-              <td>${e.solicitante.nome}</td>
-              <td>${e.solicitante.cpf}</td>
-              <td>${e.solicitante.email}</td>
-              <td>${e.livros.size()}</td>
+              <td>${e.getDataInicio()}</td>
+              <td>${e.getDataDevolucao()}</td>
+              <td>${e.isAtraso()}</td>
+              <td>${e.getSolicitante().getNome()}</td>
+              <td>${e.getSolicitante().getCpf()}</td>
+              <td>${e.getSolicitante().getEmail()}</td>
+              <td>${e.getLivros().size()}</td>
             </tr>
           </c:forEach>
         </tbody>

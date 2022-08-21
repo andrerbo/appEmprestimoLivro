@@ -53,12 +53,12 @@
         <tbody>
           <c:forEach var="l" items="${listagemLivrosFisicos}">
             <tr>
-              <td>${l.codigo}</td>
-              <td>${l.autor}</td>
-              <td>${l.titulo}</td>
-              <td>${l.categoria}</td>
-              <td>${l.numPaginas}</td>
-              <td>${l.conservacao}</td>
+              <td>${l.getCodigo()}</td>
+              <td>${l.getAutor()}</td>
+              <td>${l.getTitulo()}</td>
+              <td>${l.getCategoria()}</td>
+              <td>${l.getNumPaginas()}</td>
+              <td>${l.getConservacao()}</td>
             </tr>
           </c:forEach>
         </tbody>

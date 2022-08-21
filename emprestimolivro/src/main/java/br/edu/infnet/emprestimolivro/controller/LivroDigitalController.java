@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import br.edu.infnet.model.domain.LivroDigital;
@@ -24,7 +25,8 @@ public class LivroDigitalController {
 
 
     @GetMapping(value = "/classes/livrodigital")
-    public String getLivroDigitalPage(){
+    public String getLivroDigitalPage(Model model){
+        model.addAttribute("listagemLivroDigital", livros);
         return "/livrodigital/livrodigital";
     }
 }

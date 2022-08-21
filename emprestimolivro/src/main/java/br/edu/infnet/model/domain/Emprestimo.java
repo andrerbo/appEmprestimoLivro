@@ -3,7 +3,6 @@ package br.edu.infnet.model.domain;
 import java.time.LocalDate;
 // import java.util.List;
 import java.util.Set;
-
 // interfaces
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
 
@@ -22,10 +21,14 @@ public class Emprestimo implements IPrinter{
         this.solicitante = solicitante;
     }
 
-    // public LocalDate getDataInicio() {
-    //     return dataInicio;
-    // }
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
 
+    public Solicitante getSolicitante() {
+        return solicitante;
+    }
+    
     // public void setDataInicio(LocalDate dataInicio) {
     //     this.dataInicio = dataInicio;
     // }
@@ -64,5 +67,6 @@ public class Emprestimo implements IPrinter{
         System.out.println("# Empréstimo");
         System.out.println(this);        
     }
+
     
 }

@@ -24,7 +24,7 @@ public class SolicitanteController {
 
     @GetMapping(value = "/classes/solicitante")
     public String getSolicitantePage(Model model){
-        model.addAttribute("ListagemSolicitante", solicitantes);
+        model.addAttribute("listagemSolicitante", solicitantes);
         return "/solicitante/solicitante";
     }
    

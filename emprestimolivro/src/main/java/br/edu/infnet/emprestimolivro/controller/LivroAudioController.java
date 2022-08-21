@@ -25,7 +25,7 @@ public class LivroAudioController {
 
     @GetMapping(value = "/classes/livroaudio")
     public String getLivroAudioLivroPage(Model model){
-        model.addAttribute("listagemAudioLivros", livros);
+        model.addAttribute("listagemAudioLivro", livros);
         return "/livroaudio/livroaudio";
     }    
 }

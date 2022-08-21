@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -38,7 +39,7 @@
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
       <h3>Classe: Solicitante</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table table-bordered"> <!--style="table-layout: fixed; width: 100%"-->
         <thead>
           <tr>
             <th>Nome</th>
@@ -47,21 +48,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>André R.</td>
-            <td>999.999.990-00</td>
-            <td>andre@mail.com</td>
-          </tr>
-          <tr>
-            <td>Roberto S.</td>
-            <td>999.888.777-00</td>
-            <td>roberto@mail.com</td>
-          </tr>
-          <tr>
-            <td>Luisa A.</td>
-            <td>000.000.123-00</td>
-            <td>luisa@mail.com</td>
-          </tr>
+          <c:forEach var="s" items="${listagemSolicitante}">
+            <tr>
+              <td>${s.getNome()}</td>
+              <td>${s.getCpf()}</td>
+              <td>${s.getEmail()}</td>
+            </tr>
+          </c:forEach>
         </tbody>
       </table>
 

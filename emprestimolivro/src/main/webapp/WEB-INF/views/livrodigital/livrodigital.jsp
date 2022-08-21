@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -38,9 +39,10 @@
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
       <h3>Classe: LivroDigital</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table table-bordered"> <!--style="table-layout: fixed; width: 100%"-->
         <thead>
           <tr>
+            <th>Código</th>
             <th>Autor</th>
             <th>Título</th>
             <th>Categoria</th>
@@ -49,27 +51,16 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Robert C. Martin</td>
-            <td>Clean Architecture</td>
-            <td>Tecnologia</td>
-            <td>.pdf</td>
-            <td>Sim</td>
-          </tr>
-          <tr>
-            <td>Lucia M. Almeida</td>
-            <td>O Escaravelho do Diabo</td>
-            <td>Romance Policial</td>
-            <td>.epub</td>
-            <td>Sim</td>
-          </tr>
-          <tr>
-            <td>Jonh Doerr</td>
-            <td>Avalie o Que Importa</td>
-            <td>Auto-ajuda</td>
-            <td>.pdf</td>
-            <td>Não</td>
-          </tr>
+          <c:forEach var="f" items="${listagemLivroDigital}">
+            <tr>
+              <td>${f.getCodigo()}</td>
+              <td>${f.getAutor()}</td>
+              <td>${f.getTitulo()}</td>
+              <td>${f.getCategoria()}</td>
+              <td>${f.getFormato()}</td>
+              <td>${f.isOffline()}</td>
+            </tr>
+          </c:forEach>
         </tbody>
       </table>
 

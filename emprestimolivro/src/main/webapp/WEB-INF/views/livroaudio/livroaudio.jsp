@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
@@ -38,9 +39,10 @@
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
       <h3>Classe: LivroDigital</h3>
-      <table class="table table-bordered" style="table-layout: fixed; width: 100%">
+      <table class="table table-bordered"> <!--style="table-layout: fixed; width: 100%"-->
         <thead>
           <tr>
+            <th>Código</th> 
             <th>Autor</th>
             <th>Título</th>
             <th>Categoria</th>
@@ -49,30 +51,18 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Arthur Conan Doyle</td>
-            <td>SH: O cão dos Baskerville</td>
-            <td>Romance Policial</td>
-            <td>.mp3</td>
-            <td>06:00:00</td>
-          </tr>
-          <tr>
-            <td>Robert C. Martin</td>
-            <td>Clean Code</td>
-            <td>Tecnologia</td>
-            <td>.ogg</td>
-            <td>03:00:00</td>
-          </tr>
-          <tr>
-            <td>Paulo Yazig Sabbag</td>
-            <td>Resiliência</td>
-            <td>Auto-ajuda</td>
-            <td>.wav</td>
-            <td>08:00:00</td>
-          </tr>
+          <c:forEach var="a" items="${listagemAudioLivro}">  
+            <tr>
+              <td>${a.getCodigo()}</td>
+              <td>${a.getAutor()}</td>
+              <td>${a.getTitulo()}</td>
+              <td>${a.getCategoria()}</td>
+              <td>${a.getCodec()}</td>
+              <td>${a.getDuracao().toHours()} hrs</td>
+            </tr>
+          </c:forEach>
         </tbody>
       </table>
-
     </div>    
 </body>
 </html>
