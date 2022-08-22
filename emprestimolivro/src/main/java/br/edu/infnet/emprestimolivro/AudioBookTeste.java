@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.emprestimolivro.controller.LivroAudioController;
 import br.edu.infnet.model.domain.AudioBook;
-import br.edu.infnet.model.tests.AppImpressao;
 
 import java.time.Duration;
 

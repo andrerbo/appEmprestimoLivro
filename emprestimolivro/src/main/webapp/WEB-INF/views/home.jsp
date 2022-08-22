@@ -37,8 +37,8 @@
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
       <h3>Classe: Emprestimo</h3>
-      <table class="table" style="table-layout: fixed; width: 100%">
-        <thead>
+      <table class="table table-sm" style="table-layout: fixed; width: 100%">
+        <thead class="table-warning">
           <tr>
             <th>Atributo</th>
             <th>Tipo</th>
@@ -67,8 +67,8 @@
       <br>
 
       <h3>Classe: Solicitante</h3>
-      <table class="table" style="table-layout: fixed; width: 100%">
-        <thead>
+      <table class="table table-sm" style="table-layout: fixed; width: 100%">
+        <thead class="table-warning">
           <tr>
             <th>Atributo</th>
             <th>Tipo</th>
@@ -97,8 +97,8 @@
       <br>
 
       <h3>Classe: Livro</h3>
-      <table class="table" style="table-layout: fixed; width: 100%">
-        <thead>
+      <table class="table table-sm" style="table-layout: fixed; width: 100%">
+        <thead class="table-danger">
           <tr>
             <th>Atributo</th>
             <th>Tipo</th>
@@ -127,8 +127,8 @@
       <br>
 
       <h3>Classe: LivroFisico</h3>
-      <table class="table" style="table-layout: fixed; width: 100%">
-        <thead>
+      <table class="table table-sm" style="table-layout: fixed; width: 100%">
+        <thead class="table-success">
           <tr>
             <th>Atributo</th>
             <th>Tipo</th>
@@ -152,8 +152,8 @@
       <br>
 
       <h3>Classe: LivroDigital</h3>
-      <table class="table" style="table-layout: fixed; width: 100%">
-        <thead>
+      <table class="table table-sm" style="table-layout: fixed; width: 100%">
+        <thead class="table-success">
           <tr>
             <th>Atributo</th>
             <th>Tipo</th>
@@ -169,7 +169,7 @@
           <tr>
             <td>offline</td>
             <td>boolean</td>
-            <td>Indicativo se o download do livro pode ser feito para leitura offline</td>
+            <td>Disponibilidade para leitura offline</td>
           </tr>
         </tbody>
       </table>
@@ -177,8 +177,8 @@
       <br>
 
       <h3>Classe: AudioBook</h3>
-      <table class="table" style="table-layout: fixed; width: 100%">
-        <thead>
+      <table class="table table-sm" style="table-layout: fixed; width: 100%">
+        <thead class="table-success">
           <tr>
             <th>Atributo</th>
             <th>Tipo</th>

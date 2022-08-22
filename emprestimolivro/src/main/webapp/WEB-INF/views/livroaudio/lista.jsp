@@ -39,8 +39,8 @@
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
       <h3>Classe: LivroDigital</h3>
-      <table class="table"> <!--style="table-layout: fixed; width: 100%"-->
-        <thead>
+      <table class="table table-sm"> <!--style="table-layout: fixed; width: 100%"-->
+        <thead class="table-success">
           <tr>
             <th>ID</th> 
             <th>Autor</th>
@@ -49,6 +49,7 @@
             <th>Categoria</th>
             <th>Codec</th>
             <th>Duração</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -61,7 +62,7 @@
               <td>${a.getCategoria()}</td>
               <td>${a.getCodec()}</td>
               <td>${a.getDuracao().toHours()} hrs</td>
-              <td><a href="/livroaudio/${a.id}/excluir">excluir</a></td>
+              <td><a href="/livroaudio/${a.id}/excluir" type="button" class="btn btn-outline-danger btn-sm">excluir</a></td>
             </tr>
           </c:forEach>
         </tbody>

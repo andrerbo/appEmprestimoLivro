@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.emprestimolivro.controller.LivroFisicoController;
 import br.edu.infnet.model.domain.LivroFisico;
-import br.edu.infnet.model.tests.AppImpressao;
 
 
 @Component

@@ -2,7 +2,6 @@ package br.edu.infnet.emprestimolivro;
 
 import br.edu.infnet.emprestimolivro.controller.SolicitanteController;
 import br.edu.infnet.model.domain.Solicitante;
-import br.edu.infnet.model.tests.AppImpressao;
 
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

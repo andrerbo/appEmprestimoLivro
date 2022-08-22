@@ -39,8 +39,8 @@
       <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
       
       <h3>Classe: Empréstimo</h3>
-      <table class="table"> <!--style="table-layout: fixed; width: 100%"-->
-        <thead>
+      <table class="table table-sm"> <!--style="table-layout: fixed; width: 100%"-->
+        <thead class="table-warning">
           <tr>
             <th>ID</th>
             <th>Data Início</th>
@@ -50,6 +50,7 @@
             <th>CPF</th>
             <th>Email</th>
             <th>Livros</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -63,7 +64,7 @@
               <td>${e.getSolicitante().getCpf()}</td>
               <td>${e.getSolicitante().getEmail()}</td>
               <td>${e.getLivros().size()}</td>
-              <td><a href="/emprestimo/${e.id}/excluir">excluir</a></td>
+              <td><a href="/emprestimo/${e.id}/excluir" type="button" class="btn btn-outline-danger btn-sm">excluir</a></td>
             </tr>
           </c:forEach>
         </tbody>
