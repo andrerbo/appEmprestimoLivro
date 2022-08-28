@@ -1,0 +1,4 @@
+Andre R.;999.999.990-00;andre@mail.com
+Roberto S.;999.888.777-00;roberto@mail.com
+Luisa A.;000.000.123-00;luisa@mail.com
+Raimundo.;000.000.124-00;raimundo@mail.com

@@ -1,0 +1,4 @@
+4;Robert C. Martin;Clean Architecture;Tecnologia;.pdf;true
+5;Lucia M. Almeida;O Escaravelho do Diabo;Romance Policial;.mobi;true
+6;Jonh Doerr;Avalie o Que Importa;Auto-ajuda;.pdf;false
+10;Chetan Giridhar;Aprendendo Padrões de Projeto em Python;Tecnologia;.pdf;true

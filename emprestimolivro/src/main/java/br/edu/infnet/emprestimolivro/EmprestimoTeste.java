@@ -17,6 +17,9 @@ import br.edu.infnet.model.domain.Livro;
 import br.edu.infnet.model.domain.LivroDigital;
 import br.edu.infnet.model.domain.LivroFisico;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.HashSet;
@@ -54,30 +57,55 @@ public class EmprestimoTeste implements ApplicationRunner{
         a1.setCodec(".mp3");
         a1.setDuracao(Duration.ofHours(6));
 
-        try{
+                
+        try {
             Set<Livro> listaLivroE1 = new HashSet<Livro>();
             listaLivroE1.add(f1);
             listaLivroE1.add(d1);
             listaLivroE1.add(a1);
 
-            Solicitante s1 = new Solicitante("Andre R.", "999.999.990-00", "andre@mail.com");
-            Emprestimo e1 = new Emprestimo(s1, listaLivroE1);
-            // Emprestimo e1 = new Emprestimo();
-            // e1.setSolicitante(s1);
-            // e1.setDataInicio(LocalDate.now());
-            e1.setDataDevolucao(LocalDate.now().plusDays(14));
-            e1.setAtraso(false);
-            // e1.setLivros(listaLivroE1);
-            EmprestimoController.incluirEmprestimo(e1);       
-        } catch (CpfInvalidoException | CpfNuloException e){
-            System.out.println("[ERRO] -> " + e.getMessage());
-        } catch (SolicitanteNuloException e){
-            System.out.println("[ERRO] -> " + e.getMessage());
-        } catch (ListaLivrosVaziaException e){
-            System.out.println("[ERRO] -> " + e.getMessage());
+            String dir = "C:\\arquivos\\";
+            String file = "emprestimo.txt";
+
+            System.out.println("[INFO] -> Iniciando leitura de arquivo");
+            FileReader fileReader = new FileReader(dir + file);
+            BufferedReader leitura = new BufferedReader(fileReader);
+            
+            String linha = leitura.readLine();
+            while(linha != null){ 
+                String[] valores = linha.split(";");
+            
+                try { 
+                    Solicitante s1 = new Solicitante(valores[2], valores[3], valores[4]);
+                    Emprestimo e1 = new Emprestimo(s1, listaLivroE1);
+                    e1.setDataDevolucao(LocalDate.parse(valores[0]));
+                    e1.setAtraso(Boolean.valueOf(valores[1]));
+                    EmprestimoController.incluirEmprestimo(e1);
+                    
+                } catch (CpfInvalidoException | CpfNuloException e){
+                    System.out.println("[ERRO] -> " + e.getMessage());
+                } catch (SolicitanteNuloException e){
+                    System.out.println("[ERRO] -> " + e.getMessage());
+                } catch (ListaLivrosVaziaException e){
+                    System.out.println("[ERRO] -> " + e.getMessage());
+                }
+
+                linha = leitura.readLine();
+            }
+
+            leitura.close();
+            fileReader.close();
+        
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("[ERRO] -> O arquivo não existe");
+        
+        } finally {
+            System.out.println("[INFO] -> Processo finalizado");
         }
 
 
+/* 
         LivroFisico f2 = new LivroFisico();
         f2.setCodigo(15);
         f2.setAutor("Carlos E. Morimoto");
@@ -221,6 +249,8 @@ public class EmprestimoTeste implements ApplicationRunner{
         } catch (ListaLivrosVaziaException e){
             System.out.println("[ERRO] -> " + e.getMessage());
         }
+
+*/
 
     }
 

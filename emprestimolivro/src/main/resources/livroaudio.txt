@@ -1,0 +1,3 @@
+1;Arthur Conan Doyle;Sherlock Holmes: O cão dos Baskerville;Romance Policial;.mp3;248
+2;Robert C. Martin;Clean Code;Tecnologia;.ogg;182
+3;Paulo Yazig Sabbag;Resiliência;Auto-ajuda;.wav;359

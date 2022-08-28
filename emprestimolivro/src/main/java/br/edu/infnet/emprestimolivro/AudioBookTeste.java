@@ -9,6 +9,9 @@ import br.edu.infnet.emprestimolivro.controller.LivroAudioController;
 import br.edu.infnet.model.domain.AudioBook;
 import br.edu.infnet.model.exceptions.DuracaoAudioBookMuitoCurtaException;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.Duration;
 
 
@@ -20,47 +23,88 @@ public class AudioBookTeste implements ApplicationRunner{
     public void run(ApplicationArguments args) {
 
         try {
-        AudioBook a1 = new AudioBook();
-        a1.setCodigo(1);
-        a1.setAutor("Arthur Conan Doyle");
-        a1.setTitulo("Sherlock Holmes: O cão dos Baskerville");
-        a1.setCategoria("Romance Policial");
-        a1.setCodec(".mp3");
-        a1.setDuracao(Duration.ofMinutes(6));
-        LivroAudioController.incluirAudiobook(a1);
-        System.out.println("Duração do empréstimo: " + a1.calcularDuracaoEmprestimo().toDays() + " dias");        
+            String dir = "C:\\arquivos\\";
+            String file = "livroaudio.txt";
+
+            System.out.println("[INFO] -> Iniciando leitura de arquivo");
+            FileReader fileReader = new FileReader(dir + file);
+            BufferedReader leitura = new BufferedReader(fileReader);
+            
+            String linha = leitura.readLine();
+            while(linha != null){ 
+                String[] valores = linha.split(";");
+            
+                try { 
+                    AudioBook a1 = new AudioBook();
+                    a1.setCodigo(Integer.valueOf(valores[0]));
+                    a1.setAutor(valores[1]);
+                    a1.setTitulo(valores[2]);
+                    a1.setCategoria(valores[3]);
+                    a1.setCodec(valores[4]);
+                    a1.setDuracao(Duration.ofMinutes(Integer.valueOf(valores[5])));
+                    System.out.println("Duração do empréstimo: " + a1.calcularDuracaoEmprestimo().toDays() + " dias"); 
+                    LivroAudioController.incluirAudiobook(a1);
+                } catch (DuracaoAudioBookMuitoCurtaException e){
+                    System.out.println("[ERRO] -> " + e.getMessage());
+                }
+                linha = leitura.readLine();
+            }
+
+            leitura.close();
+            fileReader.close();
+        
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("[ERRO] -> O arquivo não existe");
+        
+        } finally {
+            System.out.println("[INFO] -> Processo finalizado");
+        }
+
+/*         
+        try {
+            AudioBook a1 = new AudioBook();
+            a1.setCodigo(1);
+            a1.setAutor("Arthur Conan Doyle");
+            a1.setTitulo("Sherlock Holmes: O cão dos Baskerville");
+            a1.setCategoria("Romance Policial");
+            a1.setCodec(".mp3");
+            a1.setDuracao(Duration.ofMinutes(6));
+            LivroAudioController.incluirAudiobook(a1);
+            System.out.println("Duração do empréstimo: " + a1.calcularDuracaoEmprestimo().toDays() + " dias");        
         } catch (DuracaoAudioBookMuitoCurtaException e){
             System.out.println("[ERRO] -> " + e.getMessage());
         }
 
         
         try{
-        AudioBook a2 = new AudioBook();
-        a2.setCodigo(2);
-        a2.setAutor("Robert C. Martin");
-        a2.setTitulo("Clean Code");
-        a2.setCategoria("Tecnologia");
-        a2.setCodec(".ogg");
-        a2.setDuracao(Duration.ofHours(3));
-        LivroAudioController.incluirAudiobook(a2);
-        System.out.println("Duração do empréstimo: " + a2.calcularDuracaoEmprestimo().toDays() + " dias");
+            AudioBook a2 = new AudioBook();
+            a2.setCodigo(2);
+            a2.setAutor("Robert C. Martin");
+            a2.setTitulo("Clean Code");
+            a2.setCategoria("Tecnologia");
+            a2.setCodec(".ogg");
+            a2.setDuracao(Duration.ofHours(3));
+            LivroAudioController.incluirAudiobook(a2);
+            System.out.println("Duração do empréstimo: " + a2.calcularDuracaoEmprestimo().toDays() + " dias");
         } catch (DuracaoAudioBookMuitoCurtaException e){
             System.out.println("[ERRO] -> " + e.getMessage());
         }
 
 
         try{
-        AudioBook a3 = new AudioBook();
-        a3.setCodigo(3);
-        a3.setAutor("Paulo Yazig Sabbag");
-        a3.setTitulo("Resiliência");
-        a3.setCategoria("Auto-ajuda");
-        a3.setCodec(".wav");
-        a3.setDuracao(Duration.ofHours(8));
-        LivroAudioController.incluirAudiobook(a3);
-        System.out.println("Duração do empréstimo: " + a3.calcularDuracaoEmprestimo().toDays() + " dias");
+            AudioBook a3 = new AudioBook();
+            a3.setCodigo(3);
+            a3.setAutor("Paulo Yazig Sabbag");
+            a3.setTitulo("Resiliência");
+            a3.setCategoria("Auto-ajuda");
+            a3.setCodec(".wav");
+            a3.setDuracao(Duration.ofHours(8));
+            LivroAudioController.incluirAudiobook(a3);
+            System.out.println("Duração do empréstimo: " + a3.calcularDuracaoEmprestimo().toDays() + " dias");
         } catch (DuracaoAudioBookMuitoCurtaException e) { 
             System.out.println("[ERRO] -> " + e.getMessage());
-        }
+        } 
+*/
     }
 }
