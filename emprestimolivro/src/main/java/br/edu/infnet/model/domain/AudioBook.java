@@ -2,6 +2,8 @@ package br.edu.infnet.model.domain;
 
 import java.time.Duration;
 
+import br.edu.infnet.model.exceptions.DuracaoAudioBookMuitoCurtaException;
+
 public class AudioBook extends Livro{
 
     private String codec;
@@ -24,7 +26,13 @@ public class AudioBook extends Livro{
     }
 
     @Override
-    public Duration calcularDuracaoEmprestimo() {
+    public Duration calcularDuracaoEmprestimo() throws DuracaoAudioBookMuitoCurtaException{
+
+        if(this.duracao.toMinutes() < 10){
+            throw new DuracaoAudioBookMuitoCurtaException(
+                this.duracao.toMinutes() + "min é muito curto para um livro áudio, talvez isto seja uma música.");
+        }
+
         return Duration.ofDays(1);
     }
 
@@ -35,7 +43,7 @@ public class AudioBook extends Livro{
 
     @Override
     public void impressao() {
-        System.out.println("# Audio Book");
+        System.out.println("############## Audio Book");
         System.out.println(this);
     }
         

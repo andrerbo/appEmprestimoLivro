@@ -2,6 +2,8 @@ package br.edu.infnet.model.domain;
 
 import java.time.Duration;
 
+import br.edu.infnet.model.exceptions.EstadoLivroFisicoLamentavelException;
+
 public class LivroFisico extends Livro{
 
     private int numPaginas;
@@ -23,7 +25,16 @@ public class LivroFisico extends Livro{
         this.conservacao = conservacao;
     }
 
-    // calcularDuracaoEmprestimo não implementado: mesmo comportamento da classe mãe
+
+    @Override
+    public Duration calcularDuracaoEmprestimo() throws EstadoLivroFisicoLamentavelException{
+
+        if (this.conservacao == "Lamentável"){ 
+            throw new EstadoLivroFisicoLamentavelException("Livro em péssimo estado, não pode ser emprestado. Tenha mais cuidado da próxima vez!");
+        }
+
+        return Duration.ofDays(30);
+    }
 
     @Override
     public String toString() {
@@ -32,13 +43,8 @@ public class LivroFisico extends Livro{
 
     @Override
     public void impressao() {
-        System.out.println("# Livro Fisico");
+        System.out.println("############## Livro Fisico");
         System.out.println(this); 
-    }
-
-    @Override
-    public Duration calcularDuracaoEmprestimo() {
-        return Duration.ofDays(30);
     }
     
 }

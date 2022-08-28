@@ -96,7 +96,7 @@
 
       <br>
 
-      <h3>Classe: Livro</h3>
+      <h3>Classe: Livro</h3> 
       <table class="table table-sm" style="table-layout: fixed; width: 100%">
         <thead class="table-danger">
           <tr>

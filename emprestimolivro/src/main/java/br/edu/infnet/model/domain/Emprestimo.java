@@ -1,10 +1,12 @@
 package br.edu.infnet.model.domain;
-// java libraries
-import java.time.LocalDate;
+
 // import java.util.List;
+import java.time.LocalDate;
 import java.util.Set;
-// interfaces
+
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
+import br.edu.infnet.model.exceptions.ListaLivrosVaziaException;
+import br.edu.infnet.model.exceptions.SolicitanteNuloException;
 
 
 public class Emprestimo implements IPrinter{
@@ -17,9 +19,18 @@ public class Emprestimo implements IPrinter{
     private Set<Livro> livros;
 
 
-    public Emprestimo(Solicitante solicitante) {
+    public Emprestimo(Solicitante solicitante, Set<Livro> livros) throws SolicitanteNuloException, ListaLivrosVaziaException{
+        if (solicitante == null){
+            throw new SolicitanteNuloException("Impossível criar empréstimo sem solicitante");
+        }
+    
+        if (livros.size() < 1){
+            throw new ListaLivrosVaziaException("Impossível criar empréstimo sem livro");
+        }
+        
         this.dataInicio = LocalDate.now();
         this.solicitante = solicitante;
+        this.livros = livros;
     }
 
     public Integer getId() {
@@ -62,9 +73,9 @@ public class Emprestimo implements IPrinter{
         return livros;
     }
 
-    public void setLivros(Set<Livro> livros) {
-        this.livros = livros;
-    }
+    // public void setLivros(Set<Livro> livros) {
+    //     this.livros = livros;
+    // }
     
     @Override
     public String toString() {
@@ -73,7 +84,7 @@ public class Emprestimo implements IPrinter{
 
     @Override
     public void impressao() {
-        System.out.println("# Empréstimo");
+        System.out.println("############## Empréstimo");
         System.out.println(this);        
     }
 

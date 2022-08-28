@@ -9,6 +9,10 @@ import br.edu.infnet.emprestimolivro.controller.EmprestimoController;
 import br.edu.infnet.model.domain.AudioBook;
 import br.edu.infnet.model.domain.Emprestimo;
 import br.edu.infnet.model.domain.Solicitante;
+import br.edu.infnet.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.model.exceptions.CpfNuloException;
+import br.edu.infnet.model.exceptions.ListaLivrosVaziaException;
+import br.edu.infnet.model.exceptions.SolicitanteNuloException;
 import br.edu.infnet.model.domain.Livro;
 import br.edu.infnet.model.domain.LivroDigital;
 import br.edu.infnet.model.domain.LivroFisico;
@@ -24,7 +28,7 @@ import java.util.Set;
 public class EmprestimoTeste implements ApplicationRunner{
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
 
         LivroFisico f1 = new LivroFisico();
         f1.setCodigo(11);
@@ -50,21 +54,28 @@ public class EmprestimoTeste implements ApplicationRunner{
         a1.setCodec(".mp3");
         a1.setDuracao(Duration.ofHours(6));
 
-        Set<Livro> listaLivroE1 = new HashSet<Livro>();
-        listaLivroE1.add(f1);
-        listaLivroE1.add(d1);
-        listaLivroE1.add(a1);
+        try{
+            Set<Livro> listaLivroE1 = new HashSet<Livro>();
+            listaLivroE1.add(f1);
+            listaLivroE1.add(d1);
+            listaLivroE1.add(a1);
 
-        Solicitante s1 = new Solicitante("Andre R.", "999.999.990-00", "andre@mail.com");
-        Emprestimo e1 = new Emprestimo(s1);
-        // Emprestimo e1 = new Emprestimo();
-        // e1.setSolicitante(s1);
-        // e1.setDataInicio(LocalDate.now());
-        e1.setDataDevolucao(LocalDate.now().plusDays(14));
-        e1.setAtraso(false);
-        e1.setLivros(listaLivroE1);
-        EmprestimoController.incluirEmprestimo(e1);       
-
+            Solicitante s1 = new Solicitante("Andre R.", "999.999.990-00", "andre@mail.com");
+            Emprestimo e1 = new Emprestimo(s1, listaLivroE1);
+            // Emprestimo e1 = new Emprestimo();
+            // e1.setSolicitante(s1);
+            // e1.setDataInicio(LocalDate.now());
+            e1.setDataDevolucao(LocalDate.now().plusDays(14));
+            e1.setAtraso(false);
+            // e1.setLivros(listaLivroE1);
+            EmprestimoController.incluirEmprestimo(e1);       
+        } catch (CpfInvalidoException | CpfNuloException e){
+            System.out.println("[ERRO] -> " + e.getMessage());
+        } catch (SolicitanteNuloException e){
+            System.out.println("[ERRO] -> " + e.getMessage());
+        } catch (ListaLivrosVaziaException e){
+            System.out.println("[ERRO] -> " + e.getMessage());
+        }
 
 
         LivroFisico f2 = new LivroFisico();
@@ -91,20 +102,28 @@ public class EmprestimoTeste implements ApplicationRunner{
         a2.setCodec(".ogg");
         a2.setDuracao(Duration.ofHours(3));
 
-        Set<Livro> listaLivroE2 = new HashSet<Livro>();
-        listaLivroE2.add(f2);
-        listaLivroE2.add(d2);
-        // listaLivroE2.add(a2);
+        try {    
+            Set<Livro> listaLivroE2 = new HashSet<Livro>();
+            listaLivroE2.add(f2);
+            listaLivroE2.add(d2);
+            // listaLivroE2.add(a2);
 
-        Solicitante s2 = new Solicitante("Roberto S.", "999.888.777-00", "roberto@mail.com");
-        Emprestimo e2 = new Emprestimo(s2);
-        // Emprestimo e2 = new Emprestimo();
-        // e2.setSolicitante(s2);
-        // e2.setDataInicio(LocalDate.now().minusDays(20));
-        e2.setDataDevolucao(LocalDate.now().minusDays(6));
-        e2.setAtraso(true);
-        e2.setLivros(listaLivroE2);
-        EmprestimoController.incluirEmprestimo(e2);
+            Solicitante s2 = new Solicitante("Roberto S.", "999.888.777-00", "roberto@mail.com");
+            Emprestimo e2 = new Emprestimo(s2, listaLivroE2);
+            // Emprestimo e2 = new Emprestimo();
+            // e2.setSolicitante(s2);
+            // e2.setDataInicio(LocalDate.now().minusDays(20));
+            e2.setDataDevolucao(LocalDate.now().minusDays(6));
+            e2.setAtraso(true);
+            // e2.setLivros(listaLivroE2);
+            EmprestimoController.incluirEmprestimo(e2);
+        } catch (CpfInvalidoException | CpfNuloException e){
+            System.out.println("[ERRO] ->" + e.getMessage());
+        } catch (SolicitanteNuloException e){
+            System.out.println("[ERRO] ->" + e.getMessage());
+        } catch (ListaLivrosVaziaException e){
+            System.out.println("[ERRO] -> " + e.getMessage());
+        }
 
 
 
@@ -132,20 +151,77 @@ public class EmprestimoTeste implements ApplicationRunner{
         a3.setCodec(".wav");
         a3.setDuracao(Duration.ofHours(8));
 
-        Set<Livro> listaLivroE3 = new HashSet<Livro>();
-        listaLivroE3.add(f3);
-        // listaLivroE3.add(d3);
-        // listaLivroE3.add(a3);
+        try{
+            Set<Livro> listaLivroE3 = new HashSet<Livro>();
+            listaLivroE3.add(f3);
+            // listaLivroE3.add(d3);
+            // listaLivroE3.add(a3);
 
-        Solicitante s3 = new Solicitante("Luisa A.", "000.000.123-00", "luisa@mail.com");
-        Emprestimo e3 = new Emprestimo(s3);
-        // Emprestimo e3 = new Emprestimo();
-        // e3.setSolicitante(s3);
-        // e3.setDataInicio(LocalDate.now().minusDays(7));
-        e3.setDataDevolucao(LocalDate.now().plusDays(7));
-        e3.setAtraso(false);
-        e3.setLivros(listaLivroE3);
-        EmprestimoController.incluirEmprestimo(e3);
+            Solicitante s3 = new Solicitante("Luisa A.", "000.000.123-00", "luisa@mail.com");
+            Emprestimo e3 = new Emprestimo(s3, listaLivroE3);
+            // Emprestimo e3 = new Emprestimo();
+            // e3.setSolicitante(s3);
+            // e3.setDataInicio(LocalDate.now().minusDays(7));
+            e3.setDataDevolucao(LocalDate.now().plusDays(7));
+            e3.setAtraso(false);
+            // e3.setLivros(listaLivroE3);
+            EmprestimoController.incluirEmprestimo(e3);
+        } catch (CpfInvalidoException | CpfNuloException e){
+            System.out.println("[ERRO] ->" + e.getMessage());
+        } catch (SolicitanteNuloException e){
+            System.out.println("[ERRO] ->" + e.getMessage());
+        } catch (ListaLivrosVaziaException e){
+            System.out.println("[ERRO] -> " + e.getMessage());
+        }
+
+
+        try{
+            Set<Livro> listaLivroE4 = new HashSet<Livro>();
+            // listaLivroE4.add(f3);
+            // listaLivroE3.add(d3);
+            // listaLivroE3.add(a3);
+
+            Solicitante s4 = new Solicitante("Luisa A.", "000.000.123-00", "luisa@mail.com");
+            Emprestimo e4 = new Emprestimo(s4, listaLivroE4);
+            // Emprestimo e4 = new Emprestimo();
+            // e4.setSolicitante(s3);
+            // e4.setDataInicio(LocalDate.now().minusDays(7));
+            e4.setDataDevolucao(LocalDate.now().plusDays(7));
+            e4.setAtraso(false);
+            // e4.setLivros(listaLivroE3);
+            EmprestimoController.incluirEmprestimo(e4);
+        } catch (CpfInvalidoException | CpfNuloException e){
+            System.out.println("[ERRO] ->" + e.getMessage());
+        } catch (SolicitanteNuloException e){
+            System.out.println("[ERRO] ->" + e.getMessage());
+        } catch (ListaLivrosVaziaException e){
+            System.out.println("[ERRO] -> " + e.getMessage());
+        }
+
+
+        try{
+            Set<Livro> listaLivroE5 = new HashSet<Livro>();
+            listaLivroE5.add(f3);
+            listaLivroE5.add(d3);
+            // listaLivroE3.add(a3);
+
+            Solicitante s5 = new Solicitante("Luisa A.", "000.000.123-00", "luisa@mail.com");
+            Emprestimo e5 = new Emprestimo(null, listaLivroE5);
+            // Emprestimo e4 = new Emprestimo();
+            // e4.setSolicitante(s3);
+            // e4.setDataInicio(LocalDate.now().minusDays(7));e3
+            e5.setDataDevolucao(LocalDate.now().plusDays(7));
+            e5.setAtraso(false);
+            // e4.setLivros(listaLivroE3);
+            EmprestimoController.incluirEmprestimo(e5);
+        } catch (CpfInvalidoException | CpfNuloException e){
+            System.out.println("[ERRO] ->" + e.getMessage());
+        } catch (SolicitanteNuloException e){
+            System.out.println("[ERRO] ->" + e.getMessage());
+        } catch (ListaLivrosVaziaException e){
+            System.out.println("[ERRO] -> " + e.getMessage());
+        }
+
     }
 
 }

@@ -2,6 +2,8 @@ package br.edu.infnet.model.domain;
 
 import java.time.Duration;
 
+import br.edu.infnet.model.exceptions.FormatoLivroDigitalInvalidoException;
+
 public class LivroDigital extends Livro{
     
     private String formato;
@@ -24,8 +26,12 @@ public class LivroDigital extends Livro{
     }
 
     @Override
-    public Duration calcularDuracaoEmprestimo() {
+    public Duration calcularDuracaoEmprestimo() throws FormatoLivroDigitalInvalidoException {
 
+        if (this.formato == ".epub"){
+            throw new FormatoLivroDigitalInvalidoException(
+                this.getTitulo() + ": Formato indisponível para empréstimo");
+        }
         // comportamento diferente da classe mãe
         return this.offline ? Duration.ofDays(2) : Duration.ofDays(60);
 
@@ -38,7 +44,7 @@ public class LivroDigital extends Livro{
 
     @Override
     public void impressao() {
-        System.out.println("# Livro Digital");
+        System.out.println("############## Livro Digital");
         System.out.println(this);
     }
     

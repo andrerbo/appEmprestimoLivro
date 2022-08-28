@@ -1,6 +1,10 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
+import br.edu.infnet.model.exceptions.DuracaoAudioBookMuitoCurtaException;
+import br.edu.infnet.model.exceptions.EstadoLivroFisicoLamentavelException;
+import br.edu.infnet.model.exceptions.FormatoLivroDigitalInvalidoException;
+
 import java.time.Duration;
 
 
@@ -53,11 +57,11 @@ public abstract class Livro implements IPrinter{
         this.categoria = categoria;
     }
 
-    public abstract Duration calcularDuracaoEmprestimo();
+    public abstract Duration calcularDuracaoEmprestimo() throws FormatoLivroDigitalInvalidoException, DuracaoAudioBookMuitoCurtaException, EstadoLivroFisicoLamentavelException;
 
     @Override
     public String toString() {
-        return calcularDuracaoEmprestimo().toDays() + " dia(s); " +  this.autor + "; " + this.titulo + "; " + this.categoria;
+        return /*calcularDuracaoEmprestimo().toDays() + " dia(s); " + */ this.autor + "; " + this.titulo + "; " + this.categoria;
     }
 
     @Override

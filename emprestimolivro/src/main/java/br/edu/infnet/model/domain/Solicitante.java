@@ -1,6 +1,8 @@
 package br.edu.infnet.model.domain;
 
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
+import br.edu.infnet.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.model.exceptions.CpfNuloException;
 
 public class Solicitante implements IPrinter{
 
@@ -9,7 +11,16 @@ public class Solicitante implements IPrinter{
     private String cpf;
     private String email;
 
-    public Solicitante(String nome, String cpf, String email){
+    public Solicitante(String nome, String cpf, String email) throws CpfInvalidoException, CpfNuloException{
+
+        if (cpf == null){
+            throw new CpfNuloException("Solicitante não pode ser adicionado: CPF nulo");
+        }
+
+        if (cpf.isEmpty()){
+            throw new CpfInvalidoException("Solicitante não pode ser adicionado: CPF vazio");
+        }
+
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
