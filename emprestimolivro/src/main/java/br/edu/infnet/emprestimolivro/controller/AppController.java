@@ -6,38 +6,35 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import br.edu.infnet.model.domain.Usuario;
 
 @Controller
 public class AppController {
-    
+
     @GetMapping(value = "/")
-    public String getHomePage(){
+    public String getHomePage() {
         return "home";
     }
 
-
     @GetMapping(value = "/login")
-    public String getLoginPage(){
+    public String getLoginPage() {
         return "login";
     }
 
-
     @PostMapping(value = "/login")
-    public String postLogin(Model model, @RequestParam String email, @RequestParam String senha){
-        if(email.equalsIgnoreCase(senha)){
-            
-            String nome = "Administrator";
-            model.addAttribute("nomeUsuario", nome);
+    public String postLogin(Model model, @RequestParam String email, @RequestParam String senha) {
+        
+        Usuario usuario = UsuarioController.validarUsuario(email, senha);
+        if (usuario != null) {
+            model.addAttribute("nomeUsuario", usuario.getNome());
             return "home";
-            // return "redirect:/";
         }
         return "redirect:/login";
     }
 
-
     @GetMapping(value = "/logout")
-    public String logout(Model model){
-        
+    public String logout(Model model) {
+
         model.addAttribute("nomeUsuario", "");
         return "redirect:/";
     }

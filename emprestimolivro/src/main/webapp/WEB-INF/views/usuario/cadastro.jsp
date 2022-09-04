@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <!DOCTYPE HTML>
   <html>
 
@@ -9,37 +10,15 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
-      <div class="container-fluid">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/solicitante/lista">Solicitante</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/emprestimo/lista">Emprestimo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/livrofisico/lista">Livro Fisico</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/livrodigital/lista">Livro Digital</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/livroaudio/lista">Livro Audio</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <c:import url="/WEB-INF/views/menu.jsp" />
 
-    <div class="container mt-3">
-      <h2>Página de cadastramento de novos usuários</h2>
-      <form action="" method="">
+    <div class="container mt-3" > <!-- style="width: 30%;" -->
+      <h2>Cadastro de usuários</h2>
+      <!--h5>Formulário de criação de novos usuários</h5-->
+      <form action="/usuario/incluir" method="post">
         <div class="mb-3 mt-3">
           <label>Nome:</label>
-          <input type="email" class="form-control" placeholder="Entre com seu nome" name="nome">
+          <input type="text" class="form-control" placeholder="Entre com seu nome" name="nome">
         </div>
         <div class="mb-3 mt-3">
           <label>Email:</label>
@@ -47,7 +26,7 @@
         </div>
         <div class="mb-3">
           <label>Senha:</label>
-          <input type="senha" class="form-control" placeholder="Entre com a sua senha" name="senha">
+          <input type="password" class="form-control" placeholder="Entre com a sua senha" name="senha">
         </div>
         <!--div class="form-check mb-3">
           <label class="form-check-label">

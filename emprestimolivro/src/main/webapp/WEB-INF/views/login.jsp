@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
   <!DOCTYPE HTML>
   <html>
 
@@ -9,33 +10,10 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-sm bg-light navbar-light">
-      <div class="container-fluid">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/solicitante/lista">Solicitante</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/emprestimo/lista">Emprestimo</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/livrofisico/lista">Livro Fisico</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/livrodigital/lista">Livro Digital</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/livroaudio/lista">Livro Audio</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <c:import url="/WEB-INF/views/menu.jsp" />
 
-    <div class="container mt-3">
-      <h2>Login page</h2>
+    <div class="container mt-3" style="width: 30%;">
+      <h2>Login</h2>
       <form action="/login" method="post">
         <div class="mb-3 mt-3">
           <label for="email">Email:</label>
