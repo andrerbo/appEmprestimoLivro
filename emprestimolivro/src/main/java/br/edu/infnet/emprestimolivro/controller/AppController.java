@@ -1,7 +1,10 @@
 package br.edu.infnet.emprestimolivro.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -12,4 +15,30 @@ public class AppController {
         return "home";
     }
 
+
+    @GetMapping(value = "/login")
+    public String getLoginPage(){
+        return "login";
+    }
+
+
+    @PostMapping(value = "/login")
+    public String postLogin(Model model, @RequestParam String email, @RequestParam String senha){
+        if(email.equalsIgnoreCase(senha)){
+            
+            String nome = "Administrator";
+            model.addAttribute("nomeUsuario", nome);
+            return "home";
+            // return "redirect:/";
+        }
+        return "redirect:/login";
+    }
+
+
+    @GetMapping(value = "/logout")
+    public String logout(Model model){
+        
+        model.addAttribute("nomeUsuario", "");
+        return "redirect:/";
+    }
 }
