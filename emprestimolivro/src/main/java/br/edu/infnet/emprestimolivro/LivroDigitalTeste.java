@@ -4,12 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.emprestimolivro.controller.LivroDigitalController;
+import br.edu.infnet.emprestimolivro.service.LivroDigitalService;
 import br.edu.infnet.model.domain.LivroDigital;
 import br.edu.infnet.model.exceptions.FormatoLivroDigitalInvalidoException;
 
@@ -17,6 +18,9 @@ import br.edu.infnet.model.exceptions.FormatoLivroDigitalInvalidoException;
 @Component
 @Order(2)
 public class LivroDigitalTeste implements ApplicationRunner{
+
+    @Autowired
+    private LivroDigitalService livroDigitalService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -42,7 +46,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
                     d1.setFormato(valores[4]);
                     d1.setOffline(Boolean.valueOf(valores[5]));
                     System.out.println("Duração do empréstimo: " + d1.calcularDuracaoEmprestimo().toDays() + " dias"); 
-                    LivroDigitalController.incluirLivroDigital(d1);
+                    livroDigitalService.incluirLivroDigital(d1);
                 } catch (FormatoLivroDigitalInvalidoException e){
                     System.out.println("[ERRO] -> " + e.getMessage());
                 }

@@ -1,23 +1,27 @@
 package br.edu.infnet.emprestimolivro;
 
-import br.edu.infnet.emprestimolivro.controller.SolicitanteController;
-import br.edu.infnet.model.domain.Solicitante;
-import br.edu.infnet.model.exceptions.CpfInvalidoException;
-import br.edu.infnet.model.exceptions.CpfNuloException;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.emprestimolivro.service.SolicitanteService;
+import br.edu.infnet.model.domain.Solicitante;
+import br.edu.infnet.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.model.exceptions.CpfNuloException;
+
 
 @Component
 @Order(5)
 public class SolicitanteTeste implements ApplicationRunner{
+
+    @Autowired
+    private SolicitanteService solicitanteService;
 
     @Override
     public void run(ApplicationArguments args) /*throws Exception*/ {
@@ -36,7 +40,7 @@ public class SolicitanteTeste implements ApplicationRunner{
             
                 try { 
                     Solicitante s1 = new Solicitante(valores[0], valores[1], valores[2]);
-                    SolicitanteController.incluirSolicitante(s1);
+                    solicitanteService.incluirSolicitante(s1);
                     
                 } catch (CpfInvalidoException | CpfNuloException e){
                     System.out.println("[ERRO] -> " + e.getMessage());

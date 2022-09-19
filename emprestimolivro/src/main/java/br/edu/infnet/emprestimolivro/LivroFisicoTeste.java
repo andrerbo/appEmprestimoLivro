@@ -4,12 +4,13 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.emprestimolivro.controller.LivroFisicoController;
+import br.edu.infnet.emprestimolivro.service.LivroFisicoService;
 import br.edu.infnet.model.domain.LivroFisico;
 import br.edu.infnet.model.exceptions.EstadoLivroFisicoLamentavelException;
 
@@ -17,6 +18,9 @@ import br.edu.infnet.model.exceptions.EstadoLivroFisicoLamentavelException;
 @Component
 @Order(1)
 public class LivroFisicoTeste implements ApplicationRunner{
+
+    @Autowired
+    private LivroFisicoService livroFisicoService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -42,7 +46,7 @@ public class LivroFisicoTeste implements ApplicationRunner{
                     f1.setNumPaginas(Integer.valueOf(valores[4]));
                     f1.setConservacao(valores[5]);
                     System.out.println("Duração do empréstimo: " + f1.calcularDuracaoEmprestimo().toDays() + " dias"); 
-                    LivroFisicoController.incluirLivroFisico(f1);
+                    livroFisicoService.incluirLivroFisico(f1);
                 } catch (EstadoLivroFisicoLamentavelException e){
                     System.out.println("[ERRO] -> " + e.getMessage());
                 }

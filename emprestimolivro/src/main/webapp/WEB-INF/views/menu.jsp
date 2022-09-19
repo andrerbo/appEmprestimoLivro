@@ -8,7 +8,7 @@
             <a class="nav-link active" href="/">Home</a>
           </li>
 
-          <c:if test="${not empty nomeUsuario}">
+          <c:if test="${not empty usuario}">
             <li class="nav-item">
               <a class="nav-link" href="/usuario/lista">Usuário</a>
             </li>
@@ -31,7 +31,7 @@
         </ul>
 
         <ul class="navbar-nav">
-          <c:if test="${empty nomeUsuario}">
+          <c:if test="${empty usuario}">
             <li class="nav-item">
               <a class="nav-link" href="/usuario">Signup</a>
             </li>
@@ -39,9 +39,9 @@
               <a class="nav-link" href="/login">Login</a>
             </li>
           </c:if>
-          <c:if test="${not empty nomeUsuario}">
+          <c:if test="${not empty usuario}">
             <li class="nav-item">
-              <a class="nav-link" href="/logout">Logout ${nomeUsuario}</a>
+              <a class="nav-link" href="/logout">Logout ${usuario.getEmail()}</a>
             </li>
           </c:if>
 

@@ -1,23 +1,26 @@
 package br.edu.infnet.emprestimolivro;
 
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
-
-import br.edu.infnet.emprestimolivro.controller.LivroAudioController;
-import br.edu.infnet.model.domain.AudioBook;
-import br.edu.infnet.model.exceptions.DuracaoAudioBookMuitoCurtaException;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.Duration;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+import br.edu.infnet.emprestimolivro.service.LivroAudioService;
+import br.edu.infnet.model.domain.AudioBook;
+import br.edu.infnet.model.exceptions.DuracaoAudioBookMuitoCurtaException;
 
 @Component
 @Order(3)
 public class AudioBookTeste implements ApplicationRunner{
+
+    @Autowired
+    private LivroAudioService livroAudioService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -43,7 +46,7 @@ public class AudioBookTeste implements ApplicationRunner{
                     a1.setCodec(valores[4]);
                     a1.setDuracao(Duration.ofMinutes(Integer.valueOf(valores[5])));
                     System.out.println("Duração do empréstimo: " + a1.calcularDuracaoEmprestimo().toDays() + " dias"); 
-                    LivroAudioController.incluirAudiobook(a1);
+                    livroAudioService.incluirAudiobook(a1);
                 } catch (DuracaoAudioBookMuitoCurtaException e){
                     System.out.println("[ERRO] -> " + e.getMessage());
                 }

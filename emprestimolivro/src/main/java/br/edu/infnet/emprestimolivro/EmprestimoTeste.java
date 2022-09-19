@@ -1,22 +1,5 @@
 package br.edu.infnet.emprestimolivro;
 
-import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.annotation.Order;
-import org.springframework.stereotype.Component;
-
-import br.edu.infnet.emprestimolivro.controller.EmprestimoController;
-import br.edu.infnet.model.domain.AudioBook;
-import br.edu.infnet.model.domain.Emprestimo;
-import br.edu.infnet.model.domain.Solicitante;
-import br.edu.infnet.model.exceptions.CpfInvalidoException;
-import br.edu.infnet.model.exceptions.CpfNuloException;
-import br.edu.infnet.model.exceptions.ListaLivrosVaziaException;
-import br.edu.infnet.model.exceptions.SolicitanteNuloException;
-import br.edu.infnet.model.domain.Livro;
-import br.edu.infnet.model.domain.LivroDigital;
-import br.edu.infnet.model.domain.LivroFisico;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,10 +8,31 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+import br.edu.infnet.emprestimolivro.service.EmprestimoService;
+import br.edu.infnet.model.domain.AudioBook;
+import br.edu.infnet.model.domain.Emprestimo;
+import br.edu.infnet.model.domain.Livro;
+import br.edu.infnet.model.domain.LivroDigital;
+import br.edu.infnet.model.domain.LivroFisico;
+import br.edu.infnet.model.domain.Solicitante;
+import br.edu.infnet.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.model.exceptions.CpfNuloException;
+import br.edu.infnet.model.exceptions.ListaLivrosVaziaException;
+import br.edu.infnet.model.exceptions.SolicitanteNuloException;
+
 
 @Component
 @Order(4)
 public class EmprestimoTeste implements ApplicationRunner{
+
+    @Autowired
+    private EmprestimoService emprestimoService;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -80,7 +84,7 @@ public class EmprestimoTeste implements ApplicationRunner{
                     Emprestimo e1 = new Emprestimo(s1, listaLivroE1);
                     e1.setDataDevolucao(LocalDate.parse(valores[0]));
                     e1.setAtraso(Boolean.valueOf(valores[1]));
-                    EmprestimoController.incluirEmprestimo(e1);
+                    emprestimoService.incluirEmprestimo(e1);
                     
                 } catch (CpfInvalidoException | CpfNuloException e){
                     System.out.println("[ERRO] -> " + e.getMessage());
