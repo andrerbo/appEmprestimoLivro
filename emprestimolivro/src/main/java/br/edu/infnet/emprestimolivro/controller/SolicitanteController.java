@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.emprestimolivro.service.SolicitanteService;
+import br.edu.infnet.model.domain.Solicitante;
 
 
 @Controller
@@ -26,6 +28,17 @@ public class SolicitanteController {
     public String getSolicitantePage(Model model){
         model.addAttribute("listagemSolicitante", solicitanteService.obterSolicitantes());
         return "/solicitante/lista";
+    }
+
+    @GetMapping(value = "/solicitante/cadastro")
+    public String getSolicitanteCadastroPage(){
+        return "/solicitante/cadastro";
+    }
+
+    @PostMapping(value = "/solicitante/incluir")
+    public String postSolicitante(Solicitante solicitante){
+        solicitanteService.incluirSolicitante(solicitante);
+        return "redirect:/solicitante/lista";
     }
    
 }

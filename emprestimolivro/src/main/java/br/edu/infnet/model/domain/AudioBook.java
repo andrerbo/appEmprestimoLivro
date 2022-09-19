@@ -21,8 +21,8 @@ public class AudioBook extends Livro{
         return duracao;
     }
 
-    public void setDuracao(Duration duracao) {
-        this.duracao = duracao;
+    public void setDuracao(int duracao) {
+        this.duracao = Duration.ofMinutes(duracao);
     }
 
     @Override

@@ -48,6 +48,10 @@
           </tbody>
         </table>
 
+        <form action="/livrofisico/cadastro" method="get">
+          <button type="submit" class="btn btn-primary mt-3 mb-3">Novo Livro</button>
+        </form>
+
       </div>
     </body>
 

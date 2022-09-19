@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.emprestimolivro.service.LivroAudioService;
+import br.edu.infnet.model.domain.AudioBook;
 
 
 @Controller
@@ -26,6 +28,17 @@ public class LivroAudioController {
     public String getLivroAudioLivroPage(Model model){
         model.addAttribute("listagemAudioLivro", livroAudioService.obterLivrosAudio());
         return "/livroaudio/lista";
+    }
+
+    @GetMapping(value = "/livroaudio/cadastro")
+    public String getLivroAudioCadastroPage(){
+        return "/livroaudio/cadastro";
+    }
+
+    @PostMapping(value = "/livroaudio/incluir")
+    public String postLivroAudio(AudioBook livroAudio){
+        livroAudioService.incluirAudiobook(livroAudio);
+        return "redirect:/livroaudio/lista";
     }
 
 }

@@ -41,6 +41,10 @@
           </tbody>
         </table>
 
+        <form action="/solicitante/cadastro" method="get">
+          <button type="submit" class="btn btn-primary mt-3 mb-3">Novo Solicitante</button>
+        </form>
+
       </div>
     </body>
 

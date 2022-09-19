@@ -13,20 +13,20 @@
     <c:import url="/WEB-INF/views/menu.jsp" />
 
     <div class="container mt-3" > <!-- style="width: 30%;" -->
-      <h2>Cadastro de usuários</h2>
+      <h2>Cadastro de Solicitante</h2>
       <!--h5>Formulário de criação de novos usuários</h5-->
-      <form action="/usuario/incluir" method="post">
+      <form action="/solicitante/incluir" method="post">
         <div class="mb-3 mt-3">
           <label>Nome:</label>
-          <input type="text" class="form-control" placeholder="Entre com seu nome" name="nome">
+          <input type="text" class="form-control" placeholder="Entre com o nome do solicitante" name="nome">
+        </div>
+        <div class="mb-3 mt-3">
+          <label>CPF:</label>
+          <input type="text" class="form-control" placeholder="Entre com o CPF do solicitante" name="cpf">
         </div>
         <div class="mb-3 mt-3">
           <label>Email:</label>
-          <input type="email" class="form-control" placeholder="Entre com seu e-mail" name="email">
-        </div>
-        <div class="mb-3 mt-3">
-          <label>Senha:</label>
-          <input type="password" class="form-control" placeholder="Entre com a sua senha" name="senha">
+          <input type="email" class="form-control" placeholder="Entre com o email do solicitante" name="email">
         </div>
         <!--div class="form-check mb-3">
           <label class="form-check-label">

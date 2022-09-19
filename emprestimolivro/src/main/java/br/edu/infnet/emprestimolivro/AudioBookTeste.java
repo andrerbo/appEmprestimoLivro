@@ -44,7 +44,7 @@ public class AudioBookTeste implements ApplicationRunner{
                     a1.setTitulo(valores[2]);
                     a1.setCategoria(valores[3]);
                     a1.setCodec(valores[4]);
-                    a1.setDuracao(Duration.ofMinutes(Integer.valueOf(valores[5])));
+                    a1.setDuracao(Integer.valueOf(valores[5]));
                     System.out.println("Duração do empréstimo: " + a1.calcularDuracaoEmprestimo().toDays() + " dias"); 
                     livroAudioService.incluirAudiobook(a1);
                 } catch (DuracaoAudioBookMuitoCurtaException e){

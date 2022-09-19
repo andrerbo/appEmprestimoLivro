@@ -5,8 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.emprestimolivro.service.LivroDigitalService;
+import br.edu.infnet.model.domain.LivroDigital;
 
 @Controller
 public class LivroDigitalController {
@@ -25,6 +27,17 @@ public class LivroDigitalController {
     public String getLivroDigitalPage(Model model) {
         model.addAttribute("listagemLivroDigital", livroDigitalService.obterLivrosDigital());
         return "/livrodigital/lista";
+    }
+    
+    @GetMapping(value = "/livrodigital/cadastro")
+    public String getLivroDigitalCadastroPage(){
+        return "/livrodigital/cadastro";
+    }
+
+    @PostMapping(value = "/livrodigital/incluir")
+    public String postLivroDigital(LivroDigital livroDigital){
+        livroDigitalService.incluirLivroDigital(livroDigital);
+        return "redirect:/livrodigital/lista";
     }
     
 }

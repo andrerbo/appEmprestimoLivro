@@ -59,7 +59,7 @@ public class EmprestimoTeste implements ApplicationRunner{
         a1.setTitulo("Sherlock Holmes: O cão dos Baskerville");
         a1.setCategoria("Romance Policial");
         a1.setCodec(".mp3");
-        a1.setDuracao(Duration.ofHours(6));
+        a1.setDuracao(360);
 
                 
         try {
