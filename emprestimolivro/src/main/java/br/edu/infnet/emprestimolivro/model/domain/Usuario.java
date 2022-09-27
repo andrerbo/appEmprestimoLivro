@@ -1,4 +1,4 @@
-package br.edu.infnet.model.domain;
+package br.edu.infnet.emprestimolivro.model.domain;
 
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
 

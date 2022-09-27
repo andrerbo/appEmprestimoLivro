@@ -1,4 +1,4 @@
-package br.edu.infnet.model.tests;
+package br.edu.infnet.emprestimolivro.model.tests;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -16,7 +16,7 @@ public class AppImpressao {
 
     public static void main(String[] args) {
         String dir = "C:\\arquivos\\";
-        String file = "emprestimos.txt";
+        String file = "emprestimo.txt";
     
         try {
             FileReader fileReader = new FileReader(dir + file);

@@ -3,7 +3,6 @@ package br.edu.infnet.emprestimolivro;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.Duration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
@@ -11,9 +10,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.emprestimolivro.model.domain.AudioBook;
+import br.edu.infnet.emprestimolivro.model.exceptions.DuracaoAudioBookMuitoCurtaException;
 import br.edu.infnet.emprestimolivro.service.LivroAudioService;
-import br.edu.infnet.model.domain.AudioBook;
-import br.edu.infnet.model.exceptions.DuracaoAudioBookMuitoCurtaException;
 
 @Component
 @Order(3)
@@ -27,7 +26,7 @@ public class AudioBookTeste implements ApplicationRunner{
 
         try {
             String dir = "C:\\arquivos\\";
-            String file = "livroaudio.txt";
+            String file = "livro.txt";
 
             System.out.println("[INFO] -> Iniciando leitura de arquivo");
             FileReader fileReader = new FileReader(dir + file);
@@ -36,19 +35,21 @@ public class AudioBookTeste implements ApplicationRunner{
             String linha = leitura.readLine();
             while(linha != null){ 
                 String[] valores = linha.split(";");
-            
-                try { 
-                    AudioBook a1 = new AudioBook();
-                    a1.setCodigo(Integer.valueOf(valores[0]));
-                    a1.setAutor(valores[1]);
-                    a1.setTitulo(valores[2]);
-                    a1.setCategoria(valores[3]);
-                    a1.setCodec(valores[4]);
-                    a1.setDuracao(Integer.valueOf(valores[5]));
-                    System.out.println("Duração do empréstimo: " + a1.calcularDuracaoEmprestimo().toDays() + " dias"); 
-                    livroAudioService.incluirAudiobook(a1);
-                } catch (DuracaoAudioBookMuitoCurtaException e){
-                    System.out.println("[ERRO] -> " + e.getMessage());
+
+                if("A".equalsIgnoreCase(valores[0])){
+                    try { 
+                        AudioBook a1 = new AudioBook();
+                        a1.setCodigo(Integer.valueOf(valores[1]));
+                        a1.setAutor(valores[2]);
+                        a1.setTitulo(valores[3]);
+                        a1.setCategoria(valores[4]);
+                        a1.setCodec(valores[5]);
+                        a1.setDuracao(Integer.valueOf(valores[6]));
+                        System.out.println("Duração do empréstimo: " + a1.calcularDuracaoEmprestimo().toDays() + " dias"); 
+                        livroAudioService.incluirAudiobook(a1);
+                    } catch (DuracaoAudioBookMuitoCurtaException e){
+                        System.out.println("[ERRO] -> " + e.getMessage());
+                    }
                 }
                 linha = leitura.readLine();
             }

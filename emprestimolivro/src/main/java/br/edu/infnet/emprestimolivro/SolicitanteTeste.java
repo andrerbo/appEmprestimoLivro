@@ -10,10 +10,10 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.emprestimolivro.model.domain.Solicitante;
+import br.edu.infnet.emprestimolivro.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.emprestimolivro.model.exceptions.CpfNuloException;
 import br.edu.infnet.emprestimolivro.service.SolicitanteService;
-import br.edu.infnet.model.domain.Solicitante;
-import br.edu.infnet.model.exceptions.CpfInvalidoException;
-import br.edu.infnet.model.exceptions.CpfNuloException;
 
 
 @Component

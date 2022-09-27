@@ -1,15 +1,29 @@
-package br.edu.infnet.model.domain;
+package br.edu.infnet.emprestimolivro.model.domain;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
-import br.edu.infnet.model.exceptions.CpfInvalidoException;
-import br.edu.infnet.model.exceptions.CpfNuloException;
+import br.edu.infnet.emprestimolivro.model.exceptions.CpfInvalidoException;
+import br.edu.infnet.emprestimolivro.model.exceptions.CpfNuloException;
 
+@Entity
+@Table(name = "TbSolicitante")
 public class Solicitante implements IPrinter{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private String cpf;
     private String email;
+
+    public Solicitante(){
+
+    }
 
     public Solicitante(String nome, String cpf, String email) throws CpfInvalidoException, CpfNuloException{
 

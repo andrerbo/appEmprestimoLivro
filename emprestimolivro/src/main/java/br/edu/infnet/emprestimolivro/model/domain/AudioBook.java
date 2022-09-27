@@ -1,8 +1,8 @@
-package br.edu.infnet.model.domain;
+package br.edu.infnet.emprestimolivro.model.domain;
 
 import java.time.Duration;
 
-import br.edu.infnet.model.exceptions.DuracaoAudioBookMuitoCurtaException;
+import br.edu.infnet.emprestimolivro.model.exceptions.DuracaoAudioBookMuitoCurtaException;
 
 public class AudioBook extends Livro{
 

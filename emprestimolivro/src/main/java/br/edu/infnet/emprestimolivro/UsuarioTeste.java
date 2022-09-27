@@ -9,8 +9,8 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.service.UsuarioService;
-import br.edu.infnet.model.domain.Usuario;
 
 @Component
 public class UsuarioTeste implements ApplicationRunner{

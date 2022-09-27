@@ -5,8 +5,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import br.edu.infnet.emprestimolivro.model.domain.Emprestimo;
 import br.edu.infnet.emprestimolivro.service.EmprestimoService;
+import br.edu.infnet.emprestimolivro.service.LivroService;
+import br.edu.infnet.emprestimolivro.service.SolicitanteService;
 
 
 @Controller
@@ -14,9 +18,13 @@ public class EmprestimoController {
 
     @Autowired
     private EmprestimoService emprestimoService;
+    @Autowired
+    private SolicitanteService solicitanteService;
+    @Autowired
+    private LivroService livroService;
 
     @GetMapping(value = "/emprestimo/{id}/excluir")
-    public String excluirLivroAudio(@PathVariable Integer id){
+    public String excluirEmprestimo(@PathVariable Integer id){
         emprestimoService.excluirEmprestimo(id);
         System.out.println("Exclusão do Empréstimo " + id + " realizada com sucesso");
         return "redirect:/emprestimo/lista";
@@ -26,6 +34,19 @@ public class EmprestimoController {
     public String getEmprestimoPage(Model model){
         model.addAttribute("listagemEmprestimo", emprestimoService.obterEmprestimos());
         return "/emprestimo/lista";
+    }
+
+    @GetMapping(value = "/emprestimo/cadastro")
+    public String getEmprestimoCadastroPage(Model model){
+        model.addAttribute("solicitantes", solicitanteService.obterSolicitantes());
+        model.addAttribute("livros", livroService.obterLivros());
+        return "/emprestimo/cadastro";
+    }
+
+    @PostMapping(value = "/emprestimo/incluir")
+    public String postLivroAudio(Emprestimo emprestimo){
+        emprestimoService.incluirEmprestimo(emprestimo);
+        return "redirect:/emprestimo/lista";
     }
 
 }

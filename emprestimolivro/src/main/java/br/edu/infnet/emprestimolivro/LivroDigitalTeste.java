@@ -10,9 +10,9 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+import br.edu.infnet.emprestimolivro.model.domain.LivroDigital;
+import br.edu.infnet.emprestimolivro.model.exceptions.FormatoLivroDigitalInvalidoException;
 import br.edu.infnet.emprestimolivro.service.LivroDigitalService;
-import br.edu.infnet.model.domain.LivroDigital;
-import br.edu.infnet.model.exceptions.FormatoLivroDigitalInvalidoException;
 
 
 @Component
@@ -27,7 +27,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
 
         try {
             String dir = "C:\\arquivos\\";
-            String file = "livrodigital.txt";
+            String file = "livro.txt";
 
             System.out.println("[INFO] -> Iniciando leitura de arquivo");
             FileReader fileReader = new FileReader(dir + file);
@@ -36,19 +36,21 @@ public class LivroDigitalTeste implements ApplicationRunner{
             String linha = leitura.readLine();
             while(linha != null){ 
                 String[] valores = linha.split(";");
-            
-                try { 
-                    LivroDigital d1 = new LivroDigital();
-                    d1.setCodigo(Integer.valueOf(valores[0]));
-                    d1.setAutor(valores[1]);
-                    d1.setTitulo(valores[2]);
-                    d1.setCategoria(valores[3]);
-                    d1.setFormato(valores[4]);
-                    d1.setOffline(Boolean.valueOf(valores[5]));
-                    System.out.println("Duração do empréstimo: " + d1.calcularDuracaoEmprestimo().toDays() + " dias"); 
-                    livroDigitalService.incluirLivroDigital(d1);
-                } catch (FormatoLivroDigitalInvalidoException e){
-                    System.out.println("[ERRO] -> " + e.getMessage());
+                
+                if("D".equalsIgnoreCase(valores[0])){
+                    try { 
+                        LivroDigital d1 = new LivroDigital();
+                        d1.setCodigo(Integer.valueOf(valores[1]));
+                        d1.setAutor(valores[2]);
+                        d1.setTitulo(valores[3]);
+                        d1.setCategoria(valores[4]);
+                        d1.setFormato(valores[5]);
+                        d1.setOffline(Boolean.valueOf(valores[5]));
+                        System.out.println("Duração do empréstimo: " + d1.calcularDuracaoEmprestimo().toDays() + " dias"); 
+                        livroDigitalService.incluirLivroDigital(d1);
+                    } catch (FormatoLivroDigitalInvalidoException e){
+                        System.out.println("[ERRO] -> " + e.getMessage());
+                    }
                 }
                 linha = leitura.readLine();
             }

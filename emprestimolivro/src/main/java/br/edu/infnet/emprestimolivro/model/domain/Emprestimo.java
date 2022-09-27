@@ -1,12 +1,12 @@
-package br.edu.infnet.model.domain;
+package br.edu.infnet.emprestimolivro.model.domain;
 
 // import java.util.List;
 import java.time.LocalDate;
 import java.util.Set;
 
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
-import br.edu.infnet.model.exceptions.ListaLivrosVaziaException;
-import br.edu.infnet.model.exceptions.SolicitanteNuloException;
+import br.edu.infnet.emprestimolivro.model.exceptions.ListaLivrosVaziaException;
+import br.edu.infnet.emprestimolivro.model.exceptions.SolicitanteNuloException;
 
 
 public class Emprestimo implements IPrinter{
@@ -24,7 +24,7 @@ public class Emprestimo implements IPrinter{
             throw new SolicitanteNuloException("Impossível criar empréstimo sem solicitante");
         }
     
-        if (livros.size() < 1){
+        if (livros == null){
             throw new ListaLivrosVaziaException("Impossível criar empréstimo sem livro");
         }
         

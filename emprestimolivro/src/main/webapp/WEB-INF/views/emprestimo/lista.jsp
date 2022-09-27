@@ -49,7 +49,9 @@
             </c:forEach>
           </tbody>
         </table>
-
+        <form action="/emprestimo/cadastro" method="get">
+          <button type="submit" class="btn btn-primary mt-3 mb-3">Novo Empréstimo</button>
+        </form>
       </div>
     </body>
 

@@ -6,8 +6,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import br.edu.infnet.model.domain.LivroDigital;
-import br.edu.infnet.model.tests.AppImpressao;
+import br.edu.infnet.emprestimolivro.model.domain.LivroDigital;
+import br.edu.infnet.emprestimolivro.model.tests.AppImpressao;
 
 @Service
 public class LivroDigitalService {

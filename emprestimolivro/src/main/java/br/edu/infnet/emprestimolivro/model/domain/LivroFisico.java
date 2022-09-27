@@ -1,8 +1,8 @@
-package br.edu.infnet.model.domain;
+package br.edu.infnet.emprestimolivro.model.domain;
 
 import java.time.Duration;
 
-import br.edu.infnet.model.exceptions.EstadoLivroFisicoLamentavelException;
+import br.edu.infnet.emprestimolivro.model.exceptions.EstadoLivroFisicoLamentavelException;
 
 public class LivroFisico extends Livro{
 
