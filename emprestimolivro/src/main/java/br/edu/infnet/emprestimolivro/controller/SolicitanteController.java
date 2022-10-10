@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.emprestimolivro.model.domain.Solicitante;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.service.SolicitanteService;
 
 
@@ -25,8 +27,8 @@ public class SolicitanteController {
     }
 
     @GetMapping(value = "/solicitante/lista")
-    public String getSolicitantePage(Model model){
-        model.addAttribute("listagemSolicitante", solicitanteService.obterSolicitantes());
+    public String getSolicitantePage(Model model, @SessionAttribute("usuario") Usuario usuario){
+        model.addAttribute("listagemSolicitante", solicitanteService.obterSolicitantes(usuario));
         return "/solicitante/lista";
     }
 
@@ -36,7 +38,8 @@ public class SolicitanteController {
     }
 
     @PostMapping(value = "/solicitante/incluir")
-    public String postSolicitante(Solicitante solicitante){
+    public String postSolicitante(Solicitante solicitante, @SessionAttribute("usuario") Usuario usuario){
+        solicitante.setUsuario(usuario);
         solicitanteService.incluirSolicitante(solicitante);
         return "redirect:/solicitante/lista";
     }

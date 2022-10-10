@@ -1,35 +1,32 @@
 package br.edu.infnet.emprestimolivro.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.emprestimolivro.model.domain.LivroFisico;
+import br.edu.infnet.emprestimolivro.model.repository.LivroFisicoRepository;
 import br.edu.infnet.emprestimolivro.model.tests.AppImpressao;
 
 @Service
 public class LivroFisicoService {
 
-    // private static List<LivroFisico> livros = new ArrayList<LivroFisico>();
-    private static Map<Integer, LivroFisico> mapaLivroFisico = new HashMap<Integer, LivroFisico>();
-    private static Integer id = 1;
+    @Autowired
+    private LivroFisicoRepository livroFisicoRepository;
 
     public void incluirLivroFisico(LivroFisico livro){
-        // livros.add(livro);
-        livro.setId(id++);
-        mapaLivroFisico.put(livro.getId(), livro);
+        livroFisicoRepository.save(livro);
         AppImpressao.relatorio("Inclusão do livro '" + livro.getTitulo()
             + "' relizada com sucesso", livro);
     }
 
     public Collection<LivroFisico> obterLivrosFisicos(){
-        return mapaLivroFisico.values();
+        return (Collection<LivroFisico>) livroFisicoRepository.findAll();
     }
 
     public void excluirLivro(Integer id){
-        mapaLivroFisico.remove(id);
+        livroFisicoRepository.deleteById(id);
     }
     
 }

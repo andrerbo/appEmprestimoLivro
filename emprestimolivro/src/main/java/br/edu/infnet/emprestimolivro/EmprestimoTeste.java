@@ -15,7 +15,6 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import br.edu.infnet.emprestimolivro.controller.EmprestimoController;
 import br.edu.infnet.emprestimolivro.model.domain.AudioBook;
 import br.edu.infnet.emprestimolivro.model.domain.Emprestimo;
 import br.edu.infnet.emprestimolivro.model.domain.Livro;
@@ -24,9 +23,6 @@ import br.edu.infnet.emprestimolivro.model.domain.LivroFisico;
 import br.edu.infnet.emprestimolivro.model.domain.Solicitante;
 import br.edu.infnet.emprestimolivro.model.exceptions.CpfInvalidoException;
 import br.edu.infnet.emprestimolivro.model.exceptions.CpfNuloException;
-import br.edu.infnet.emprestimolivro.model.exceptions.DuracaoAudioBookMuitoCurtaException;
-import br.edu.infnet.emprestimolivro.model.exceptions.EstadoLivroFisicoLamentavelException;
-import br.edu.infnet.emprestimolivro.model.exceptions.FormatoLivroDigitalInvalidoException;
 import br.edu.infnet.emprestimolivro.model.exceptions.ListaLivrosVaziaException;
 import br.edu.infnet.emprestimolivro.model.exceptions.SolicitanteNuloException;
 import br.edu.infnet.emprestimolivro.service.EmprestimoService;

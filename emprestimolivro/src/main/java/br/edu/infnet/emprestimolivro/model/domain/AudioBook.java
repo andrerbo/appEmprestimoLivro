@@ -2,8 +2,13 @@ package br.edu.infnet.emprestimolivro.model.domain;
 
 import java.time.Duration;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import br.edu.infnet.emprestimolivro.model.exceptions.DuracaoAudioBookMuitoCurtaException;
 
+@Entity
+@Table(name = "TbLivroaudio")
 public class AudioBook extends Livro{
 
     private String codec;

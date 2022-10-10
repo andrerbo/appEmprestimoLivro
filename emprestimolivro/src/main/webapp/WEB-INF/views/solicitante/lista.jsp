@@ -24,6 +24,7 @@
               <th>Nome</th>
               <th>CPF</th>
               <th>Email</th>
+              <th>Usuario</th>
               <th></th>
             </tr>
           </thead>
@@ -34,6 +35,7 @@
                 <td>${s.getNome()}</td>
                 <td>${s.getCpf()}</td>
                 <td>${s.getEmail()}</td>
+                <td>${s.usuario.email}</td>
                 <td><a href="/solicitante/${s.id}/excluir" type="button"
                     class="btn btn-outline-danger btn-sm">excluir</a></td>
               </tr>

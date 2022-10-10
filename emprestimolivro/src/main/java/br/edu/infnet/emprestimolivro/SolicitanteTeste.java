@@ -11,6 +11,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.emprestimolivro.model.domain.Solicitante;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.model.exceptions.CpfInvalidoException;
 import br.edu.infnet.emprestimolivro.model.exceptions.CpfNuloException;
 import br.edu.infnet.emprestimolivro.service.SolicitanteService;
@@ -26,6 +27,9 @@ public class SolicitanteTeste implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) /*throws Exception*/ {
         
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+
         try {
             String dir = "C:\\arquivos\\";
             String file = "solicitante.txt";
@@ -39,8 +43,9 @@ public class SolicitanteTeste implements ApplicationRunner{
                 String[] valores = linha.split(";");
             
                 try { 
-                    Solicitante s1 = new Solicitante(valores[0], valores[1], valores[2]);
-                    solicitanteService.incluirSolicitante(s1);
+                    Solicitante solicitante = new Solicitante(valores[0], valores[1], valores[2]);
+                    solicitante.setUsuario(usuario);
+                    solicitanteService.incluirSolicitante(solicitante);
                     
                 } catch (CpfInvalidoException | CpfNuloException e){
                     System.out.println("[ERRO] -> " + e.getMessage());
