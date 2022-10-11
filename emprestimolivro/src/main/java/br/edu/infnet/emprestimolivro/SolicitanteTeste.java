@@ -18,7 +18,7 @@ import br.edu.infnet.emprestimolivro.service.SolicitanteService;
 
 
 @Component
-@Order(5)
+@Order(2)
 public class SolicitanteTeste implements ApplicationRunner{
 
     @Autowired

@@ -1,31 +1,30 @@
 package br.edu.infnet.emprestimolivro.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.emprestimolivro.model.domain.Livro;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
+import br.edu.infnet.emprestimolivro.model.repository.LivroRepository;
 
 @Service
 public class LivroService {
     
     @Autowired
-    private LivroAudioService livroAudioService;
-    @Autowired
-    private LivroDigitalService livroDigitalService;
-    @Autowired
-    private LivroFisicoService livroFisicoService;
+    private LivroRepository livroRepository;
 
-    public List<Livro> obterLivros(){
-
-        List<Livro> livros = new ArrayList<Livro>();
-
-        livros.addAll(livroAudioService.obterLivrosAudio());
-        livros.addAll(livroDigitalService.obterLivrosDigital());
-        livros.addAll(livroFisicoService.obterLivrosFisicos());
-        
-        return livros;
+    public Collection<Livro> obterLivros(){  
+        return (Collection<Livro>) livroRepository.findAll();
     }
+
+    public Collection<Livro> obterLivros(Usuario usuario){  
+        return (Collection<Livro>) livroRepository.findAll(usuario.getId());
+    }
+
+    public void excluirLivro(Integer id){
+        livroRepository.deleteById(id);
+    }
+
 }

@@ -1,35 +1,37 @@
 package br.edu.infnet.emprestimolivro.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.emprestimolivro.model.domain.LivroDigital;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
+import br.edu.infnet.emprestimolivro.model.repository.LivroDigitalRepository;
 import br.edu.infnet.emprestimolivro.model.tests.AppImpressao;
 
 @Service
 public class LivroDigitalService {
- 
-    // private static List<LivroDigital> livros = new ArrayList<LivroDigital>();
-    private static Map<Integer, LivroDigital> mapaLivroDigital = new HashMap<Integer, LivroDigital>();
-    private static Integer id = 1;
+    
+    @Autowired
+    private LivroDigitalRepository livroDigitalRepository;
 
     public void incluirLivroDigital(LivroDigital livro) {
-        // livros.add(livro);
-        livro.setId(id++);
-        mapaLivroDigital.put(livro.getId(), livro);
+        livroDigitalRepository.save(livro);
         AppImpressao.relatorio("Inclusão do livro '" + livro.getTitulo()
                 + "' relizada com sucesso", livro);
     }
 
     public Collection<LivroDigital> obterLivrosDigital() {
-        return mapaLivroDigital.values();
+        return (Collection<LivroDigital>) livroDigitalRepository.findAll();
+    }
+
+    public Collection<LivroDigital> obterLivrosDigital(Usuario usuario) {
+        return (Collection<LivroDigital>) livroDigitalRepository.findAll(usuario.getId());
     }
 
     public void excluirLivro(Integer id) {
-        mapaLivroDigital.remove(id);
+        livroDigitalRepository.deleteById(id);
     }
 
 }

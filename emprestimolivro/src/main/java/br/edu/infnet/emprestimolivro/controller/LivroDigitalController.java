@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.emprestimolivro.model.domain.LivroDigital;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.service.LivroDigitalService;
 
 @Controller
@@ -24,8 +26,8 @@ public class LivroDigitalController {
     }
 
     @GetMapping(value = "/livrodigital/lista")
-    public String getLivroDigitalPage(Model model) {
-        model.addAttribute("listagemLivroDigital", livroDigitalService.obterLivrosDigital());
+    public String getLivroDigitalPage(Model model, @SessionAttribute("usuario") Usuario usuario) {
+        model.addAttribute("listagemLivroDigital", livroDigitalService.obterLivrosDigital(usuario));
         return "/livrodigital/lista";
     }
     
@@ -35,7 +37,8 @@ public class LivroDigitalController {
     }
 
     @PostMapping(value = "/livrodigital/incluir")
-    public String postLivroDigital(LivroDigital livroDigital){
+    public String postLivroDigital(LivroDigital livroDigital, @SessionAttribute("usuario") Usuario usuario){
+        livroDigital.setUsuario(usuario);
         livroDigitalService.incluirLivroDigital(livroDigital);
         return "redirect:/livrodigital/lista";
     }

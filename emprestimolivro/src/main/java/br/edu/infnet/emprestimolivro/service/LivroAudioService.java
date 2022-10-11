@@ -1,35 +1,37 @@
 package br.edu.infnet.emprestimolivro.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.emprestimolivro.model.domain.AudioBook;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
+import br.edu.infnet.emprestimolivro.model.repository.LivroAudioRepository;
 import br.edu.infnet.emprestimolivro.model.tests.AppImpressao;
 
 @Service
 public class LivroAudioService {
-   
-    // private static List<AudioBook> livros = new ArrayList<AudioBook>();
-    private static Map<Integer, AudioBook> mapaLivroAudio = new HashMap<Integer, AudioBook>();
-    private static Integer id = 1;
+    
+    @Autowired
+    private LivroAudioRepository livroAudioRepository;
 
     public void incluirAudiobook(AudioBook livro){
-        // livros.add(livro);
-        livro.setId(id++);
-        mapaLivroAudio.put(livro.getId(), livro);
+        livroAudioRepository.save(livro);
         AppImpressao.relatorio("Inclusão do livro '" + livro.getTitulo()
             + "' relizada com sucesso", livro);
     }
 
     public Collection<AudioBook> obterLivrosAudio(){
-        return mapaLivroAudio.values();
+        return (Collection<AudioBook>) livroAudioRepository.findAll();
+    }
+
+    public Collection<AudioBook> obterLivrosAudio(Usuario usuario){
+        return (Collection<AudioBook>) livroAudioRepository.findAll(usuario.getId());
     }
 
     public void excluirLivro(Integer id){
-        mapaLivroAudio.remove(id);
+        livroAudioRepository.deleteById(id);
     }
     
 }

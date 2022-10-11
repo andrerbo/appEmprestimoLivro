@@ -1,23 +1,44 @@
 package br.edu.infnet.emprestimolivro.model.domain;
 
-// import java.util.List;
 import java.time.LocalDate;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
 import br.edu.infnet.emprestimolivro.model.exceptions.ListaLivrosVaziaException;
 import br.edu.infnet.emprestimolivro.model.exceptions.SolicitanteNuloException;
 
-
+@Entity
+@Table(name = "TbEmprestimo")
 public class Emprestimo implements IPrinter{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private LocalDate dataInicio;
     private LocalDate dataDevolucao;
     private boolean atraso;
+
+    @OneToOne(cascade = CascadeType.DETACH)
+    @JoinColumn(name = "idSolicitante")
     private Solicitante solicitante;
+
+    @ManyToMany(cascade = CascadeType.DETACH)
     private Set<Livro> livros;
 
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     public Emprestimo(Solicitante solicitante, Set<Livro> livros) throws SolicitanteNuloException, ListaLivrosVaziaException{
         if (solicitante == null){
@@ -49,6 +70,14 @@ public class Emprestimo implements IPrinter{
         return solicitante;
     }
     
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
     // public void setDataInicio(LocalDate dataInicio) {
     //     this.dataInicio = dataInicio;
     // }

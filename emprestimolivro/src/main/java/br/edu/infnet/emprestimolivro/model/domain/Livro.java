@@ -1,11 +1,7 @@
 package br.edu.infnet.emprestimolivro.model.domain;
 
-import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
-import br.edu.infnet.emprestimolivro.model.exceptions.DuracaoAudioBookMuitoCurtaException;
-import br.edu.infnet.emprestimolivro.model.exceptions.EstadoLivroFisicoLamentavelException;
-import br.edu.infnet.emprestimolivro.model.exceptions.FormatoLivroDigitalInvalidoException;
-
 import java.time.Duration;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,7 +9,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import br.edu.infnet.emprestimolivro.interfaces.IPrinter;
+import br.edu.infnet.emprestimolivro.model.exceptions.DuracaoAudioBookMuitoCurtaException;
+import br.edu.infnet.emprestimolivro.model.exceptions.EstadoLivroFisicoLamentavelException;
+import br.edu.infnet.emprestimolivro.model.exceptions.FormatoLivroDigitalInvalidoException;
 
 @Entity
 @Table(name = "TbLivro")
@@ -29,6 +33,28 @@ public abstract class Livro implements IPrinter{
     private String titulo;
     private String categoria;
 
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
+
+    @ManyToMany(mappedBy = "livros")
+    private List<Emprestimo> emprestimos;
+
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
     public Integer getId() {
         return id;

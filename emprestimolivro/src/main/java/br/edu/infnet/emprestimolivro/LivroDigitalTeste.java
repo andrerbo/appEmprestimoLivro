@@ -11,12 +11,13 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.emprestimolivro.model.domain.LivroDigital;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.model.exceptions.FormatoLivroDigitalInvalidoException;
 import br.edu.infnet.emprestimolivro.service.LivroDigitalService;
 
 
 @Component
-@Order(2)
+@Order(4)
 public class LivroDigitalTeste implements ApplicationRunner{
 
     @Autowired
@@ -24,6 +25,9 @@ public class LivroDigitalTeste implements ApplicationRunner{
 
     @Override
     public void run(ApplicationArguments args) {
+
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
 
         try {
             String dir = "C:\\arquivos\\";
@@ -40,6 +44,7 @@ public class LivroDigitalTeste implements ApplicationRunner{
                 if("D".equalsIgnoreCase(valores[0])){
                     try { 
                         LivroDigital d1 = new LivroDigital();
+                        d1.setUsuario(usuario);
                         d1.setCodigo(Integer.valueOf(valores[1]));
                         d1.setAutor(valores[2]);
                         d1.setTitulo(valores[3]);

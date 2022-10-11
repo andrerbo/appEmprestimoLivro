@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.emprestimolivro.model.domain.LivroFisico;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.model.repository.LivroFisicoRepository;
 import br.edu.infnet.emprestimolivro.model.tests.AppImpressao;
 
@@ -23,6 +24,10 @@ public class LivroFisicoService {
 
     public Collection<LivroFisico> obterLivrosFisicos(){
         return (Collection<LivroFisico>) livroFisicoRepository.findAll();
+    }
+
+    public Collection<LivroFisico> obterLivrosFisicos(Usuario usuario){
+        return (Collection<LivroFisico>) livroFisicoRepository.findAll(usuario.getId());
     }
 
     public void excluirLivro(Integer id){

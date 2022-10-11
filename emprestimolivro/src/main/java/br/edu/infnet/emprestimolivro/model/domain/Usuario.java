@@ -27,6 +27,29 @@ public class Usuario implements IPrinter{
     @JoinColumn(name = "idUsuario")
     private List<Solicitante> solicitantes;
 
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Livro> livros;
+
+    @OneToMany
+    @JoinColumn(name = "idUsuario")
+    private List<Emprestimo> emprestimos;
+
+    public List<Emprestimo> getEmprestimos() {
+        return emprestimos;
+    }
+
+    public void setEmprestimos(List<Emprestimo> emprestimos) {
+        this.emprestimos = emprestimos;
+    }
+
+    public List<Livro> getLivros() {
+        return livros;
+    }
+
+    public void setLivros(List<Livro> livros) {
+        this.livros = livros;
+    }
 
     public Integer getId() {
         return id;

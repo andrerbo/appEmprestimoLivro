@@ -11,12 +11,13 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.emprestimolivro.model.domain.LivroFisico;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.model.exceptions.EstadoLivroFisicoLamentavelException;
 import br.edu.infnet.emprestimolivro.service.LivroFisicoService;
 
 
 @Component
-@Order(6)
+@Order(3)
 public class LivroFisicoTeste implements ApplicationRunner{
 
     @Autowired
@@ -24,6 +25,9 @@ public class LivroFisicoTeste implements ApplicationRunner{
 
     @Override
     public void run(ApplicationArguments args) {
+
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
 
         try {
             String dir = "C:\\arquivos\\";
@@ -40,6 +44,7 @@ public class LivroFisicoTeste implements ApplicationRunner{
                 if("F".equalsIgnoreCase(valores[0])){
                     try { 
                         LivroFisico f1 = new LivroFisico();
+                        f1.setUsuario(usuario);
                         f1.setCodigo(Integer.valueOf(valores[1]));
                         f1.setAutor(valores[2]);
                         f1.setTitulo(valores[3]);

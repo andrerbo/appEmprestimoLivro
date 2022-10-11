@@ -11,11 +11,12 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.emprestimolivro.model.domain.AudioBook;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.model.exceptions.DuracaoAudioBookMuitoCurtaException;
 import br.edu.infnet.emprestimolivro.service.LivroAudioService;
 
 @Component
-@Order(3)
+@Order(5)
 public class AudioBookTeste implements ApplicationRunner{
 
     @Autowired
@@ -24,6 +25,9 @@ public class AudioBookTeste implements ApplicationRunner{
     @Override
     public void run(ApplicationArguments args) {
 
+        Usuario usuario = new Usuario();
+        usuario.setId(1);
+        
         try {
             String dir = "C:\\arquivos\\";
             String file = "livro.txt";
@@ -39,6 +43,7 @@ public class AudioBookTeste implements ApplicationRunner{
                 if("A".equalsIgnoreCase(valores[0])){
                     try { 
                         AudioBook a1 = new AudioBook();
+                        a1.setUsuario(usuario);
                         a1.setCodigo(Integer.valueOf(valores[1]));
                         a1.setAutor(valores[2]);
                         a1.setTitulo(valores[3]);

@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 
 import br.edu.infnet.emprestimolivro.model.domain.AudioBook;
+import br.edu.infnet.emprestimolivro.model.domain.Usuario;
 import br.edu.infnet.emprestimolivro.service.LivroAudioService;
 
 
@@ -25,8 +27,8 @@ public class LivroAudioController {
     }
 
     @GetMapping(value = "/livroaudio/lista")
-    public String getLivroAudioLivroPage(Model model){
-        model.addAttribute("listagemAudioLivro", livroAudioService.obterLivrosAudio());
+    public String getLivroAudioLivroPage(Model model, @SessionAttribute("usuario") Usuario usuario){
+        model.addAttribute("listagemAudioLivro", livroAudioService.obterLivrosAudio(usuario));
         return "/livroaudio/lista";
     }
 
@@ -36,7 +38,8 @@ public class LivroAudioController {
     }
 
     @PostMapping(value = "/livroaudio/incluir")
-    public String postLivroAudio(AudioBook livroAudio){
+    public String postLivroAudio(AudioBook livroAudio, @SessionAttribute("usuario") Usuario usuario){
+        livroAudio.setUsuario(usuario);
         livroAudioService.incluirAudiobook(livroAudio);
         return "redirect:/livroaudio/lista";
     }

@@ -19,6 +19,9 @@
               <a class="nav-link" href="/emprestimo/lista">Emprestimo</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/livro/lista">Livro</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/livrofisico/lista">Livro Fisico</a>
             </li>
             <li class="nav-item">
