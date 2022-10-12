@@ -15,6 +15,11 @@
       <div class="container mt-3">
         <h2>App Empréstimo Livro</h2>
         <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
+        <c:if test="${not empty mensagem}">
+          <div class="alert alert-info">
+            <strong>Info: </strong>${mensagem}
+          </div>
+        </c:if>
         <h3>Classe: Solicitante</h3>
         <table class="table table-sm">
           <!--style="table-layout: fixed; width: 100%"-->

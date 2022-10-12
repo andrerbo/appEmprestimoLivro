@@ -40,6 +40,11 @@ public class Emprestimo implements IPrinter{
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
+
+    public Emprestimo() {
+        this.dataInicio = LocalDate.now();
+    }
+
     public Emprestimo(Solicitante solicitante, Set<Livro> livros) throws SolicitanteNuloException, ListaLivrosVaziaException{
         if (solicitante == null){
             throw new SolicitanteNuloException("Impossível criar empréstimo sem solicitante");
@@ -62,12 +67,12 @@ public class Emprestimo implements IPrinter{
         this.id = id;
     }
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
-    }
-
     public Solicitante getSolicitante() {
         return solicitante;
+    }
+
+    public void setSolicitante(Solicitante solicitante) {
+        this.solicitante = solicitante;
     }
     
     public Usuario getUsuario() {
@@ -78,16 +83,20 @@ public class Emprestimo implements IPrinter{
         this.usuario = usuario;
     }
 
-    // public void setDataInicio(LocalDate dataInicio) {
-    //     this.dataInicio = dataInicio;
-    // }
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
 
     public LocalDate getDataDevolucao() {
         return dataDevolucao;
     }
 
-    public void setDataDevolucao(LocalDate dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
+    public void setDataDevolucao(String dataDevolucao) {
+        this.dataDevolucao = LocalDate.parse(dataDevolucao);
     }
 
     public boolean isAtraso() {
@@ -102,9 +111,9 @@ public class Emprestimo implements IPrinter{
         return livros;
     }
 
-    // public void setLivros(Set<Livro> livros) {
-    //     this.livros = livros;
-    // }
+    public void setLivros(Set<Livro> livros) {
+        this.livros = livros;
+    }
     
     @Override
     public String toString() {

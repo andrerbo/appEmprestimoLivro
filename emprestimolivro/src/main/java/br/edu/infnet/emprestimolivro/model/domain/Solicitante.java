@@ -35,9 +35,7 @@ public class Solicitante implements IPrinter{
         this.usuario = usuario;
     }
 
-    public Solicitante(){
-
-    }
+    public Solicitante() {}
 
     public Solicitante(String nome, String cpf, String email) throws CpfInvalidoException, CpfNuloException{
 

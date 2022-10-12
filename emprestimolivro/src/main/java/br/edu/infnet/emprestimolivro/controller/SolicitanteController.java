@@ -18,17 +18,26 @@ public class SolicitanteController {
     
     @Autowired
     private SolicitanteService solicitanteService;
+    private String mensagem;
 
     @GetMapping(value = "/solicitante/{id}/excluir")
     public String excluirLivroAudio(@PathVariable Integer id){
-        solicitanteService.excluirSolicitante(id);
-        System.out.println("Exclusão do Solicitante " + id + " realizada com sucesso");
+
+        try{
+            solicitanteService.excluirSolicitante(id);
+            System.out.println("Exclusão do Solicitante " + id + " realizada com sucesso");
+            mensagem = "Inclusão do solicitante realizada com sucesso!";
+        } catch (Exception e){
+            mensagem = "Impossível excluir solicitante " + id + "!";
+        }
+        
         return "redirect:/solicitante/lista";
     }
 
     @GetMapping(value = "/solicitante/lista")
     public String getSolicitantePage(Model model, @SessionAttribute("usuario") Usuario usuario){
         model.addAttribute("listagemSolicitante", solicitanteService.obterSolicitantes(usuario));
+        model.addAttribute("mensagem", mensagem);
         return "/solicitante/lista";
     }
 
@@ -41,6 +50,7 @@ public class SolicitanteController {
     public String postSolicitante(Solicitante solicitante, @SessionAttribute("usuario") Usuario usuario){
         solicitante.setUsuario(usuario);
         solicitanteService.incluirSolicitante(solicitante);
+        mensagem = "Inclusão do solicitante " + solicitante.getNome() + " realizada com sucesso!";
         return "redirect:/solicitante/lista";
     }
    
