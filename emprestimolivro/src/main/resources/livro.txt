@@ -1,0 +1,10 @@
+A;1;Arthur Conan Doyle;Sherlock Holmes: O cão dos Baskerville;Romance Policial;.mp3;248
+A;2;Robert C. Martin;Clean Code;Tecnologia;.ogg;182
+A;3;Paulo Yazig Sabbag;Resiliência;Auto-ajuda;.wav;359
+D;4;Robert C. Martin;Clean Architecture;Tecnologia;.pdf;true
+D;5;Lucia M. Almeida;O Escaravelho do Diabo;Romance Policial;.mobi;true
+D;6;Jonh Doerr;Avalie o Que Importa;Auto-ajuda;.pdf;false
+D;10;Chetan Giridhar;Aprendendo Padrões de Projeto em Python;Tecnologia;.pdf;true
+F;7;Allen B. Downey;Think Java;Tecnologia;354;Excelente
+F;8;Carlos E. Morimoto;Hardware: O Guia Definitivo;Tecnologia;207;Novo
+F;9;Ray Bradbury;Fahrenheit 451;Ficção;654;Regular

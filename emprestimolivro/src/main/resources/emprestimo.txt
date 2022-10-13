@@ -1,4 +1,17 @@
-2022-09-11;false;Andre R.;999.999.990-00;andre@mail.com
-2022-08-22;true;Roberto S.;999.888.777-00;roberto@mail.com
-2022-09-04;false;Luisa A.;000.000.123-00;luisa@mail.com
-2022-09-04;false;Raimundo.;000.000.124-00;raimundo@mail.com
+E;2022-09-11;false;Andre R.;999.999.990-00;andre@mail.com
+A;1;Arthur Conan Doyle;Sherlock Holmes: O cão dos Baskerville;Romance Policial;.mp3;248
+E;2022-08-22;true;Roberto S.;999.888.777-00;roberto@mail.com
+D;5;Lucia M. Almeida;O Escaravelho do Diabo;Romance Policial;.mobi;true
+E;2022-09-04;false;Luisa A.;000.000.123-00;luisa@mail.com
+D;4;Robert C. Martin;Clean Architecture;Tecnologia;.pdf;true
+F;8;Carlos E. Morimoto;Hardware: O Guia Definitivo;Tecnologia;207;Novo
+F;9;Ray Bradbury;Fahrenheit 451;Ficção;654;Regular
+E;2022-09-04;false;Raimundo.;000.000.124-00;raimundo@mail.com
+A;3;Paulo Yazig Sabbag;Resiliência;Auto-ajuda;.wav;359
+A;2;Robert C. Martin;Clean Code;Tecnologia;.ogg;182
+D;6;Jonh Doerr;Avalie o Que Importa;Auto-ajuda;.pdf;false
+D;10;Chetan Giridhar;Aprendendo Padrões de Projeto em Python;Tecnologia;.pdf;true
+F;7;Allen B. Downey;Think Java;Tecnologia;354;Excelente
+
+
+
