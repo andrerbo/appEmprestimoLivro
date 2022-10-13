@@ -18,7 +18,8 @@ public class Usuario implements IPrinter{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;    
+    private Integer id;
+    private boolean admin;
     private String nome;
     private String email;
     private String senha;
@@ -91,6 +92,14 @@ public class Usuario implements IPrinter{
         this.senha = senha;
     }
 
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     @Override
     public void impressao() {
         System.out.println("############## Usuário");
@@ -99,7 +108,7 @@ public class Usuario implements IPrinter{
 
     @Override
     public String toString(){
-        return this.nome + "; " + this.email + "; " + this.senha;
+        return this.nome + "; " + this.email + "; " + this.senha + "; " + this.isAdmin();
     }
 
 }

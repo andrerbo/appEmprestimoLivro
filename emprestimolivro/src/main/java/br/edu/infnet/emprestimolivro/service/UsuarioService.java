@@ -1,13 +1,13 @@
 package br.edu.infnet.emprestimolivro.service;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.emprestimolivro.model.domain.Usuario;
+import br.edu.infnet.emprestimolivro.model.exceptions.UsuarioAdminNaoPodeSerDeletadoException;
 import br.edu.infnet.emprestimolivro.model.repository.UsuarioRepository;
 import br.edu.infnet.emprestimolivro.model.tests.AppImpressao;
 
@@ -15,30 +15,36 @@ import br.edu.infnet.emprestimolivro.model.tests.AppImpressao;
 public class UsuarioService {
 
     @Autowired
-    private UsuarioRepository usuarioRepository;    
-    private static Map<String, Usuario> mapaUsuarios = new HashMap<String, Usuario>();
+    private UsuarioRepository usuarioRepository;  
 
     public Usuario validarUsuario(String email, String senha) {
-        Usuario usuario = mapaUsuarios.get(email);
+        List<Usuario> userList = usuarioRepository.findByEmail(email);
+        Usuario usuario = userList.get(0);
+
         if (usuario != null && usuario.getSenha().equals(senha)) {
             return usuario;
         }
+
         return null;
     }
 
     public void incluirUsuario(Usuario usuario) {
         usuarioRepository.save(usuario);
-        mapaUsuarios.put(usuario.getEmail(), usuario);
         AppImpressao.relatorio("Inclusão do usuario '" + usuario.getNome()
                 + "' relizada com sucesso", usuario);
     }
 
     public Collection<Usuario> obterUsuarios() {
-        return mapaUsuarios.values();
+        return (Collection<Usuario>) usuarioRepository.findAll();
     }
 
-    public void excluirUsuario(String email){
-        mapaUsuarios.remove(email);
+
+    public void excluirUsuario(Integer id) throws UsuarioAdminNaoPodeSerDeletadoException{
+        Usuario usuario = usuarioRepository.findById(id).get();
+        if (usuario.isAdmin() == true){
+            throw new UsuarioAdminNaoPodeSerDeletadoException("Admin não pode ser deletado!");
+        }
+        usuarioRepository.deleteById(id);
     }
 
 }

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.emprestimolivro.model.domain.Usuario;
+import br.edu.infnet.emprestimolivro.model.exceptions.UsuarioAdminNaoPodeSerDeletadoException;
 import br.edu.infnet.emprestimolivro.service.UsuarioService;
 
 @Controller
@@ -15,10 +16,14 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    private String mensagem;
+    private String mensagemTipo;
 
     @GetMapping(value = "/usuario/lista")
     public String getUsuarioPage(Model model) {
         model.addAttribute("listagemUsuario", usuarioService.obterUsuarios());
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("mensagemTipo", mensagemTipo);
         return "/usuario/lista";
     }
 
@@ -33,10 +38,17 @@ public class UsuarioController {
         return "redirect:/";
     }
 
-    @GetMapping(value = "/usuario/{email}/excluir")
-    public String excluirUsuario(@PathVariable String email){
-        usuarioService.excluirUsuario(email);
-        System.out.println("Exclusão do Usuário " + email + " realizada com sucesso");
+    @GetMapping(value = "/usuario/{id}/excluir")
+    public String excluirUsuario(@PathVariable Integer id){
+        try{
+            usuarioService.excluirUsuario(id);
+            mensagem = "Exclusão do usuário " + id + " realizada com sucesso!";
+            mensagemTipo = "alert-success";
+            System.out.println("Exclusão do usuário " + id + " realizada com sucesso");
+        } catch (UsuarioAdminNaoPodeSerDeletadoException e) {
+            mensagem = e.getMessage();
+            mensagemTipo = "alert-danger";
+        }
         return "redirect:/usuario/lista";
     }
     

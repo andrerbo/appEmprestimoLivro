@@ -14,41 +14,59 @@
     <c:import url="/WEB-INF/views/menu.jsp" />
 
     <div class="container mt-3" > <!-- style="width: 30%;" -->
-      <h2>Cadastro de Empréstimo</h2>
+      <h2 class="mb-5">Cadastro de Empréstimo</h2>
       <form action="/emprestimo/incluir" method="post">
-        <div class="mb-3 mt-3">
-          <label>Data de devolução:</label>
-          <input type="text" class="form-control" placeholder="Entre com a data de devolução" name="dataDevolucao">
+        <div class="form-group row mt-2">
+          <label for="dataDevolucao" class="col-sm-2 col-form-label">Data de devolução:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="dataDevolucao" placeholder="Entre com a data de devolução no formato aaaa-mm-dd. Ex: 2023-01-31" name="dataDevolucao">
+          </div>
         </div>
-        <div class="mb-3 mt-3">
-          <c:if test="${not empty solicitantes}">
-            <label>Solicitante:</label>
-            <select name="solicitante" class="form-control" id="sel1">
-              <c:forEach var="s" items="${solicitantes}">
-              <option value="${s.id}">${s.getNome()}</option>
-              </c:forEach>
-            </select>
+        <c:if test="${not empty solicitantes}">
+          <div class="form-group row mt-2">
+            <label for="solicitante" class="col-sm-2 col-form-label">Solicitante:</label>
+            <div class="col-sm-10">
+              <select id="solicitante" class="form-control" name="solicitante">
+                <c:forEach var="s" items="${solicitantes}">
+                  <option value="${s.id}">${s.getNome()}</option>
+                </c:forEach>
+              </select>
+            </div>
           </c:if>
           <c:if test="${empty solicitantes}">
-            <label>Não existem solicitantes cadastrados!</label>
             <c:set var="ativaBotao" value="disabled" />
-          </c:if>
-        </div>
-        <div class="mb-3 mt-3">
-          <c:if test="${not empty livros}">
-            <label>Livros:</label>
-            <c:forEach var="l" items="${livros}">
-            <div class="checkbox">
-              <label><input type="checkbox" name="livros" value="${l.id}">${l.getTitulo()}</label>
+            <div class="form-group row mt-2">
+              <label for="solicitante" class="col-sm-2 col-form-label">Solicitante:</label>
+              <div class="col-sm-10">
+                Não existem solicitantes cadastrados!
+              </div>
             </div>
-            </c:forEach>
           </c:if>
-          <c:if test="${empty livros}">
-            <label>Não existem livros cadastrados!</label>
-            <c:set var="ativaBotao" value="disabled" />
-          </c:if>
+          <div class="form-group row mt-2">
+            <div class="col-sm-2">Livros:</div>
+            <c:if test="${not empty livros}">
+              <div class="col-sm-10">
+                <c:forEach var="l" items="${livros}">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="livros" name="livros" value="${l.id}">
+                    <label class="form-check-label" for="livros">
+                      ${l.titulo}
+                    </label>
+                  </div>
+                </c:forEach>
+              </div>
+            </c:if>
+            <c:if test="${empty livros}">
+              <c:set var="ativaBotao" value="disabled" />
+              <div class="col-sm-10">
+                Não existem livros cadastrados!
+              </div>
+            </c:if>
+          </div>
+          <div class="d-grid gap-2 mt-3">
+            <button ${ativaBotao} type="submit" class="btn btn-primary">Cadastrar</button>
+          </div>
         </div>
-        <button ${ativaBotao} type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
     </div>
   </body>

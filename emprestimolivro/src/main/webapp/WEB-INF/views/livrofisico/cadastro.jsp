@@ -13,35 +13,56 @@
     <c:import url="/WEB-INF/views/menu.jsp" />
 
     <div class="container mt-3" > <!-- style="width: 30%;" -->
-      <h2>Cadastro de Livro Físico</h2>
-      <!--h5>Formulário de criação de novos usuários</h5-->
+      <h2 class="mb-5">Cadastro de Livro Físico</h2>
       <form action="/livrofisico/incluir" method="post">
-        <div class="mb-3 mt-3">
-          <label>Código:</label>
-          <input type="integer" class="form-control" placeholder="Entre com o código do livro" name="codigo">
+        <div class="form-group row mt-2">
+          <label for="codigo" class="col-sm-2 col-form-label">Código:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="codigo" placeholder="Entre com o código" name="codigo">
+          </div>
         </div>
-        <div class="mb-3 mt-3">
-          <label>Autor:</label>
-          <input type="text" class="form-control" placeholder="Entre com o autor do livro" name="autor">
+        <div class="form-group row mt-2">
+          <label for="autor" class="col-sm-2 col-form-label">Autor:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="autor" placeholder="Entre com o autor" name="autor">
+          </div>
         </div>
-        <div class="mb-3 mt-3">
-          <label>Título:</label>
-          <input type="text" class="form-control" placeholder="Entre com o título do livro" name="titulo">
+        <div class="form-group row mt-2">
+          <label for="titulo" class="col-sm-2 col-form-label">Título:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="titulo" placeholder="Entre com o título" name="titulo">
+          </div>
         </div>
-      <div class="mb-3 mt-3">
-        <label>Categoria:</label>
-        <input type="text" class="form-control" placeholder="Entre com a categoria do livro" name="categoria">
+        <div class="form-group row mt-2">
+          <label for="categoria" class="col-sm-2 col-form-label">Categoria:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="categoria" placeholder="Entre com a categoria" name="categoria">
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <label for="numPaginas" class="col-sm-2 col-form-label">Número de páginas:</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="numPags" placeholder="Entre com o número de páginas" name="numPaginas">
+          </div>
+        </div>
+        <div class="form-group row mt-2">
+          <label for="conservacao" class="col-sm-2 col-form-label">Conservação:</label>
+          <div class="col-sm-10">
+            <select id="conservacao" class="form-control" name="conservacao">
+              <option value="Novo" selected>Novo</option>
+              <option value="Excelente">Excelente</option>
+              <option value="Bom">Bom</option>
+              <option value="Regular">Regular</option>
+              <option value="Rasurado">Rasurado</option>
+            </select>
+          </div>
+        </div>
+        <div class="d-grid gap-2 mt-3">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
       </div>
-      <div class="mb-3 mt-3">
-        <label>Número de páginas:</label>
-        <input type="integer" class="form-control" placeholder="Entre com o número de páginas do livro" name="numPaginas">
-      </div>
-      <div class="mb-3 mt-3">
-        <label>Conservação:</label>
-        <input type="text" class="form-control" placeholder="Entre com o estado de conservação do livro" name="conservacao">
-      </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
       </form>
     </div>
+
   </body>
   </html>

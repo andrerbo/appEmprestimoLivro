@@ -17,17 +17,29 @@ public class LivroDigitalController {
 
     @Autowired
     private LivroDigitalService livroDigitalService;
+    private String mensagem;
+    private String mensagemTipo;
 
     @GetMapping(value = "/livrodigital/{id}/excluir")
     public String excluirLivroDigital(@PathVariable Integer id) {
-        livroDigitalService.excluirLivro(id);
-        System.out.println("Exclusão do Livro Digital " + id + " realizada com sucesso");
+        try{
+            livroDigitalService.excluirLivro(id);
+            mensagem = "Livro excluído com sucesso!";
+            mensagemTipo = "alert-success";
+            System.out.println("Exclusão do Livro aúdio " + id + " realizada com sucesso!");
+        } catch(Exception e){
+            mensagem = "Impossível excluir livro " + id + "!";
+            mensagemTipo = "alert-danger";
+        }
+
         return "redirect:/livrodigital/lista";
     }
 
     @GetMapping(value = "/livrodigital/lista")
     public String getLivroDigitalPage(Model model, @SessionAttribute("usuario") Usuario usuario) {
         model.addAttribute("listagemLivroDigital", livroDigitalService.obterLivrosDigital(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("mensagemTipo", mensagemTipo);
         return "/livrodigital/lista";
     }
     
@@ -40,6 +52,8 @@ public class LivroDigitalController {
     public String postLivroDigital(LivroDigital livroDigital, @SessionAttribute("usuario") Usuario usuario){
         livroDigital.setUsuario(usuario);
         livroDigitalService.incluirLivroDigital(livroDigital);
+        mensagem = "Livro digital incluído com sucesso!";
+        mensagemTipo = "alert-success";
         return "redirect:/livrodigital/lista";
     }
     

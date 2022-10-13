@@ -15,8 +15,12 @@
       <div class="container mt-3">
         <h2>App Empréstimo Livro</h2>
         <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
-
-        <h3>Classe: Usuário</h3>
+        <c:if test="${not empty mensagem}">
+          <div class="alert ${mensagemTipo}">
+            <strong>Info: </strong>${mensagem}
+          </div>
+        </c:if>
+        <h3 class="mt-3">Classe: Usuário</h3>
         <table class="table table-sm">
           <!--style="table-layout: fixed; width: 100%"-->
           <thead class="table-info">
@@ -33,7 +37,7 @@
                 <td>${u.getNome()}</td>
                 <td>${u.getEmail()}</td>
                 <td>${u.getSenha()}</td>
-                <td><a href="/usuario/${u.email}/excluir" type="button" class="btn btn-outline-danger btn-sm">excluir</a></td>
+                <td><a href="/usuario/${u.id}/excluir" type="button" class="btn btn-outline-danger btn-sm">excluir</a></td>
               </tr>
             </c:forEach>
           </tbody>

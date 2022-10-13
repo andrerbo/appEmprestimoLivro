@@ -18,17 +18,29 @@ public class LivroAudioController {
 
     @Autowired
     private LivroAudioService livroAudioService;
+    private String mensagem;
+    private String mensagemTipo;
 
     @GetMapping(value = "/livroaudio/{id}/excluir")
     public String excluirLivroAudio(@PathVariable Integer id){
-        livroAudioService.excluirLivro(id);
-        System.out.println("Exclusão do Livro Aúdio " + id + " realizada com sucesso");
+        try{
+            livroAudioService.excluirLivro(id);
+            mensagem = "Livro excluído com sucesso!";
+            mensagemTipo = "alert-success";
+            System.out.println("Exclusão do Livro aúdio " + id + " realizada com sucesso!");
+        } catch(Exception e){
+            mensagem = "Impossível excluir livro " + id + "!";
+            mensagemTipo = "alert-danger";
+        }
+        
         return "redirect:/livroaudio/lista";
     }
 
     @GetMapping(value = "/livroaudio/lista")
     public String getLivroAudioLivroPage(Model model, @SessionAttribute("usuario") Usuario usuario){
         model.addAttribute("listagemAudioLivro", livroAudioService.obterLivrosAudio(usuario));
+        model.addAttribute("mensagem", mensagem);
+        model.addAttribute("mensagemTipo", mensagemTipo);
         return "/livroaudio/lista";
     }
 
@@ -41,6 +53,8 @@ public class LivroAudioController {
     public String postLivroAudio(AudioBook livroAudio, @SessionAttribute("usuario") Usuario usuario){
         livroAudio.setUsuario(usuario);
         livroAudioService.incluirAudiobook(livroAudio);
+        mensagem = "Livro aúdio incluído com sucesso!";
+        mensagemTipo = "alert-success";
         return "redirect:/livroaudio/lista";
     }
 

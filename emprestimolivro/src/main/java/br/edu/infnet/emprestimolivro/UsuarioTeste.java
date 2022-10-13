@@ -39,6 +39,7 @@ public class UsuarioTeste implements ApplicationRunner{
                 usuario.setNome(valores[0]);
                 usuario.setEmail(valores[1]);
                 usuario.setSenha(valores[2]);
+                usuario.setAdmin(Boolean.valueOf(valores[3]));
                 usuarioService.incluirUsuario(usuario);
 
                 linha = leitura.readLine();

@@ -13,30 +13,32 @@
     <c:import url="/WEB-INF/views/menu.jsp" />
 
     <div class="container mt-3" > <!-- style="width: 30%;" -->
-      <h2>Cadastro de Solicitante</h2>
-      <!--h5>Formulário de criação de novos usuários</h5-->
+      <h2 class="mb-5">Cadastro de Solicitante</h2>
       <form action="/solicitante/incluir" method="post">
-        <div class="mb-3 mt-3">
-          <label>Nome:</label>
-          <input type="text" class="form-control" placeholder="Entre com o nome do solicitante" name="nome">
+        <div class="form-group row mt-2">
+          <label for="nome" class="col-sm-2 col-form-label">Nome:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="nome" placeholder="Entre com o nome" name="nome">
+          </div>
         </div>
-        <div class="mb-3 mt-3">
-          <label>CPF:</label>
-          <input type="text" class="form-control" placeholder="Entre com o CPF do solicitante" name="cpf">
+        <div class="form-group row mt-2">
+          <label for="cpf" class="col-sm-2 col-form-label">CPF:</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="cpf" placeholder="Entre com o cpf" name="cpf">
+          </div>
         </div>
-        <div class="mb-3 mt-3">
-          <label>Email:</label>
-          <input type="email" class="form-control" placeholder="Entre com o email do solicitante" name="email">
+        <div class="form-group row mt-2">
+          <label for="email" class="col-sm-2 col-form-label">Email:</label>
+          <div class="col-sm-10">
+            <input type="email" class="form-control" id="email" placeholder="Entre com o email" name="email">
+          </div>
         </div>
-        <!--div class="form-check mb-3">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox" name="remember"> Remember me
-          </label>
-        </div-->
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <div class="d-grid gap-2 mt-3">
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+      </div>
       </form>
     </div>
-
   </body>
 
   </html>

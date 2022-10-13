@@ -15,8 +15,15 @@
       <div class="container mt-3">
         <h2>App Empréstimo Livro</h2>
         <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
-
-        <h3>Classe: LivroFisico</h3>
+        <c:if test="${not empty mensagem}">
+          <div class="alert ${mensagemTipo}">
+            <strong>Info: </strong>${mensagem}
+          </div>
+        </c:if>
+        <form action="/livrofisico/cadastro" method="get">
+          <button type="submit" class="btn btn-primary mt-3 mb-3">Novo Livro</button>
+        </form>
+        <h3 class="mt-3">Classe: LivroFisico</h3>
         <table class="table table-sm">
           <!-- style="table-layout: fixed; width: 100%" -->
           <thead class="table-success">
@@ -47,11 +54,6 @@
             </c:forEach>
           </tbody>
         </table>
-
-        <form action="/livrofisico/cadastro" method="get">
-          <button type="submit" class="btn btn-primary mt-3 mb-3">Novo Livro</button>
-        </form>
-
       </div>
     </body>
 

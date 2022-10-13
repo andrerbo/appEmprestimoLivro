@@ -16,11 +16,14 @@
         <h2>App Empréstimo Livro</h2>
         <p>Projeto de gestão de empréstimo de livros para uma biblioteca</p>
         <c:if test="${not empty mensagem}">
-          <div class="alert alert-info">
+          <div class="alert ${mensagemTipo}">
             <strong>Info: </strong>${mensagem}
           </div>
         </c:if>
-        <h3>Classe: Solicitante</h3>
+        <form action="/solicitante/cadastro" method="get">
+          <button type="submit" class="btn btn-primary mt-3 mb-3">Novo Solicitante</button>
+        </form>
+        <h3 class="mt-3">Classe: Solicitante</h3>
         <table class="table table-sm">
           <!--style="table-layout: fixed; width: 100%"-->
           <thead class="table-warning">
@@ -47,10 +50,6 @@
             </c:forEach>
           </tbody>
         </table>
-
-        <form action="/solicitante/cadastro" method="get">
-          <button type="submit" class="btn btn-primary mt-3 mb-3">Novo Solicitante</button>
-        </form>
 
       </div>
     </body>
