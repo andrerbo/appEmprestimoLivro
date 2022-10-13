@@ -12,7 +12,7 @@ import br.edu.infnet.emprestimolivro.model.exceptions.UsuarioAdminNaoPodeSerDele
 import br.edu.infnet.emprestimolivro.service.UsuarioService;
 
 @Controller
-public class UsuarioController {
+public class UsuarioController{
 
     @Autowired
     private UsuarioService usuarioService;
@@ -28,7 +28,7 @@ public class UsuarioController {
     }
 
     @GetMapping(value = "/usuario")
-    public String getCadastroPage() {
+    public String getCadastroPage(){
         return "usuario/cadastro";
     }
 

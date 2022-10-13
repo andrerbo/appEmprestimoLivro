@@ -1,7 +1,6 @@
 package br.edu.infnet.emprestimolivro.service;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,21 +17,24 @@ public class UsuarioService {
     private UsuarioRepository usuarioRepository;  
 
     public Usuario validarUsuario(String email, String senha) {
-        List<Usuario> userList = usuarioRepository.findByEmail(email);
-        Usuario usuario = userList.get(0);
-
-        if (usuario != null && usuario.getSenha().equals(senha)) {
-            return usuario;
+        Collection<Usuario> userList = this.obterUsuarios();
+        
+        for(Usuario user: userList){
+            if(user.getEmail().equals(email) && user.getSenha().equals(senha)){
+                return user;
+            }
         }
-
+        
         return null;
     }
+
 
     public void incluirUsuario(Usuario usuario) {
         usuarioRepository.save(usuario);
         AppImpressao.relatorio("Inclusão do usuario '" + usuario.getNome()
                 + "' relizada com sucesso", usuario);
     }
+    
 
     public Collection<Usuario> obterUsuarios() {
         return (Collection<Usuario>) usuarioRepository.findAll();
